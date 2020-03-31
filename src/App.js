@@ -3,6 +3,7 @@ import "./App.css";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router";
 import SinglePage from "./components/SinglePage/SinglePage";
+import Header from "./components/Header/Header";
 // import NoteWrapper from 'components/NoteWrapper';
 
 class App extends Component {
@@ -45,6 +46,7 @@ class App extends Component {
   render() {
     return (
       <>
+        <Header />
         <Switch>
           <Route exact path={"/"} notes={this.state.actualNotes} />
           <Route path={"/archive"} notes={this.state.archiveNotes} />
