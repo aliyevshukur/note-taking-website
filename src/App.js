@@ -3,15 +3,14 @@ import './App.css';
 import {Route} from 'react-router-dom';
 import {Switch} from 'react-router';
 import SinglePage from "./components/SinglePage/SinglePage";
-// import NoteWrapper from 'components/NoteWrapper';
+import NoteWrapper from 'components/NoteWrapper';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             notes: [],
-            actualNotes: [],
-            archiveNotes: [],
+            currentNotes: [],
             selectedId: null
         }
     }
@@ -31,7 +30,7 @@ class App extends Component {
     FilterActual = () =>  {
         const actual = this.state.notes;
         this.setState({
-            actualNotes: actual.filter((item)=> item.status !== false)
+            currentNotes: actual.filter((item)=> item.status !== false)
         }
     )
     };
@@ -39,7 +38,7 @@ class App extends Component {
     FilterArchive = () =>  {
         const actual = this.state.notes;
         this.setState({
-                actualNotes: actual.filter((item)=> item.status !== true)
+                currentNotes: actual.filter((item)=> item.status !== true)
             }
         )
     };
@@ -47,9 +46,9 @@ class App extends Component {
     render() {
         return (
             <>
+                <p>Hello</p>
                 <Switch>
-                    <Route exact path={'/'} notes={this.state.actualNotes}/>
-                    <Route path={'/archive'} notes={this.state.archiveNotes}/>
+                    <Route exact path={'/'} render={()=><NoteWrapper notes={this.state.actualNotes}/>}/>
                     <Route path={'/create'}/>
                     <Route path={'/edit'}/>
                     <Route path={`/notes/${this.state.selectedId}`} component={SinglePage}/>
