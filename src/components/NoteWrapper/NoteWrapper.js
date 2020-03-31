@@ -3,7 +3,7 @@ import React from "react";
 const NoteWrapper = () => {
   return (
     <div>
-      <h1>NoteWrapper</h1>
+      <h1>Note Wrapper</h1>
     </div>
   );
 };
