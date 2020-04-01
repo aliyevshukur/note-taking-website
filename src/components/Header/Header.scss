@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+
+  .header-left {
+    display: flex;
+    padding: 30px;
+  }
+
+  .header-right {
+    padding: 30px;
+  }
+}
