@@ -25,6 +25,7 @@ class App extends Component {
           notes: result
         });
         this.filterActual();
+        console.log(this.state.currentNotes);
       });
   }
 

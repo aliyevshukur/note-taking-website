@@ -3,72 +3,72 @@
     {
       "id": 1,
       "title": "Do StepProject",
-      "context": "Do stepProject till 4 april",
+      "context": "Do StepProject that Nick uploaded today",
       "status": true,
-      "color": "F8CECC"
+      "color": "rgb(255, 242, 204)"
     },
     {
       "id": 2,
       "title": "Do Sport",
       "context": "Dont forget to do sport for today",
       "status": true,
-      "color": "F8CECC"
+      "color": "rgb(248, 206, 204)"
     },
     {
       "id": 3,
-      "title": "Meet",
-      "context": "Dont forget to meet with friends at 8",
+      "title": "Do Homework",
+      "context": "Do Homework which Alina teacher gave for holiday",
       "status": true,
-      "color": "F8CECC"
+      "color": "rgba(218, 232, 252, 1)"
     },
     {
       "id": 4,
       "title": "Driving course",
       "context": "Go to driving course tomorrow",
       "status": true,
-      "color": "#D5E8D4"
+      "color": "rgb(248, 206, 204)"
     },
     {
       "id": 5,
       "title": "Chat with girlfriend",
       "context": "Your girlfriend will wait at 10 o-clock in whatsapp",
       "status": true,
-      "color": "#DAE8FC"
+      "color": "rgb(213, 232, 212)"
     },
     {
       "id": 6,
       "title": "Go Running",
       "context": "Dont forget to run 15 minutes today",
       "status": false,
-      "color": "#FFF2CC"
+      "color": "rgb(255, 242, 204)"
     },
     {
       "id": 7,
       "title": "School",
       "context": "Go to school at 5 o-clock",
       "status": false,
-      "color": "#F8CECC"
+      "color": "rgba(218, 232, 252, 1)"
     },
     {
       "id": 8,
-      "title": "Walking",
-      "context": "Go walking for 15 minutes",
+      "title": "Meet",
+      "context": "Meet with friends at park",
       "status": false,
-      "color": "#F8CECC"
+      "color": "rgb(213, 232, 212)"
     },
     {
       "id": "9",
       "title": "Call Mom",
       "context": "Call mom at night",
       "status": false,
-      "color": "#D5E8D4"
+      "color": "rgb(213, 232, 212)"
     },
     {
       "id": 10,
       "title": "Reports",
       "context": "Make reports for conference",
       "status": false,
-      "color": "#FFF2CC"
+      "color": "rgb(255, 242, 204)"
     }
   ]
 }
