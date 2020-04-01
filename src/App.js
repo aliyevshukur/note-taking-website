@@ -13,8 +13,8 @@ class App extends Component {
     this.state = {
       notes: [],
       currentNotes: [],
-      selectedNote: {},
-      action: ""
+      action: "",
+      selectedNote: JSON.parse(localStorage.getItem('selectedItem')) || {}
     };
   }
 
@@ -54,11 +54,10 @@ class App extends Component {
   };
 
   setSingleNote = note => {
-    // this.setState({
-    //   selectedNote: note
-    // });
-
-    console.log(note);
+    localStorage.setItem('selectedItem',JSON.stringify(note));
+    this.setState({
+      selectedNote: note
+    });
   };
 
   //Create post request and update json file (not working)

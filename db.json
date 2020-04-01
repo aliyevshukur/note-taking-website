@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "Do StepProject",
-      "context": "Do stepProject till 4 april",
+      "context": "Do StepProject that Nick uploaded today",
       "status": true,
       "color": "rgb(255, 242, 204)"
     },
@@ -16,8 +16,8 @@
     },
     {
       "id": 3,
-      "title": "Meet",
-      "context": "Dont forget to meet with friends at 8",
+      "title": "Do Homework",
+      "context": "Do Homework which Alina teacher gave for holiday",
       "status": true,
       "color": "rgba(218, 232, 252)"
     },
@@ -43,16 +43,9 @@
       "color": "rgb(255, 242, 204)"
     },
     {
-      "id": 7,
-      "title": "School",
-      "context": "Go to school at 5 o-clock",
-      "status": false,
-      "color": "rgba(218, 232, 252)"
-    },
-    {
       "id": 8,
-      "title": "Walking",
-      "context": "Go walking for 15 minutes",
+      "title": "Meet",
+      "context": "Meet with friends at park",
       "status": false,
       "color": "rgb(213, 232, 212)"
     },

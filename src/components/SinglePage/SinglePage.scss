@@ -1,3 +1,35 @@
-.noteContainer {
-  display: flex;
+.notes {
+  width: 77%;
+  height: 400px;
+  border: 1px solid green;
+  text-align: center;
+  &Container {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+  }
+  &Buttons{
+    display: flex;
+    flex-direction: column;
+  }
+  &-title {
+    text-align: center;
+  }
 }
+
+.singleContext {
+  margin:0 auto;
+}
+
+.buttonDesign {
+  width: 300px;
+  height: 65px;
+  outline: none;
+  border-radius: 10px;
+  margin: 0 0 10px 0;
+  border: 1px solid black;
+  background: white;
+  color: black;
+}
+
+

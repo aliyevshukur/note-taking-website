@@ -1,21 +1,38 @@
 .Modal {
   &Window {
-    width: 200px;
-    height: 100px;
+    width: 500px;
+    height: 300px;
     position: absolute;
-    top: 100%;
-    left: 100%;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -150px;
+    text-align: center;
   }
+
   &CancelButton {
     width: 70%;
-    height: 35px;
-    background: indianred;
+    background: rgb(248, 206, 204);
+    border: 1px solid rgb(248, 149, 121);
     color: black;
+    padding: 20px 0;
   }
-  &CancelButton {
-    width: 70%;
-    height: 35px;
-    background: limegreen;
+  &YesButton {
+    width: 30%;
+    background: rgb(213, 232, 212);
+    border: 1px solid rgb(127, 248, 137);
     color: black;
+    padding: 20px 0;
+  }
+
+  &TitleStyle {
+    font-size: 20px;
+  }
+
+  &TitleContainer {
+    border: 1px black solid;
+    border-bottom: none;
+    padding: 20px 0;
+    background: #ffffff;
   }
 }
