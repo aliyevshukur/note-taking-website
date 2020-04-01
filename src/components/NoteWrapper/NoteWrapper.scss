@@ -1,0 +1,16 @@
+.note-wrapper {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .note {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+
+    .note-title {
+      border: 1px solid;
+    }
+  }
+}

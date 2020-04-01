@@ -1,0 +1,52 @@
+@mixin button {
+  padding: 10px 80px;
+  background-color: #fff;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  .header-left {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    border: 1px solid black;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-right: 630px;
+
+      .header-title {
+        margin: 0;
+      }
+    }
+    .logo > img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .header-title {
+      font-size: 30px;
+    }
+
+    .button {
+      @include button;
+      margin-left: 20px;
+    }
+  }
+
+  .header-right {
+    display: flex;
+    align-self: center;
+    border: 1px solid black;
+    padding: 30px;
+
+    .button {
+      @include button;
+    }
+  }
+}
