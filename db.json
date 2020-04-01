@@ -84,32 +84,18 @@
       "color": "red"
     },
     {
+      "id": 15,
+      "title": "dsdasdas",
+      "context": "asdsadsadas",
+      "status": false,
+      "color": ""
+    },
+    {
       "id": 14,
-      "title": "sdsdsadsdsad",
-      "context": "asdasdsadsadasd",
+      "title": "adsdas",
+      "context": "sadsadsad",
       "status": false,
       "color": "blue"
-    },
-    {
-      "id": 15,
-      "title": "adasdsadsadsadsa",
-      "context": "asdsadsadsada",
-      "status": false,
-      "color": "yellow"
-    },
-    {
-      "id": 16,
-      "title": "asdasda",
-      "context": "asdsadsadsa",
-      "status": false,
-      "color": "green"
-    },
-    {
-      "id": 17,
-      "title": "adsadsad",
-      "context": "asdsadsadsa",
-      "status": false,
-      "color": "yellow"
     }
   ]
 }
