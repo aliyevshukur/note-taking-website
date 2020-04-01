@@ -13,8 +13,7 @@ class App extends Component {
     this.state = {
       notes: [],
       currentNotes: [],
-      selectedId: null,
-      selectedNote: null
+      selectedNote: {}
     };
   }
 
@@ -25,19 +24,17 @@ class App extends Component {
         this.setState({
           notes: result
         });
-        console.log(this.state.notes);
         this.filterActual();
       });
   }
 
   filterActual = () => {
     const notesData = [...this.state.notes];
-    console.log("dskfjs", notesData);
+
     const actualNotes = notesData.filter(note => {
       console.log(note.status);
-      return note.status === "false";
+      return note.status === false;
     });
-    console.log(actualNotes);
 
     this.setState({
       currentNotes: actualNotes
@@ -47,7 +44,7 @@ class App extends Component {
   filterArchive = () => {
     const notesData = [...this.state.notes];
     this.setState({
-      currentNotes: notesData.filter(notes => notes.status === "true")
+      currentNotes: notesData.filter(notes => notes.status === true)
     });
   };
 
