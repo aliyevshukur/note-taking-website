@@ -1,5 +1,6 @@
 import React from "react";
 import Note from "../Note/Note";
+import "./NoteWrapper.scss";
 
 const NoteWrapper = props => {
   console.log(props.notes)
