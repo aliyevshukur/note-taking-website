@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from "../Button/Button";
 import {useHistory} from "react-router";
 import './SinglePage.scss';
+import Modal from "../Modal/Modal";
 // import Note from 'components/Note.js'
 
 const SinglePage = (props) => {
-    const history = useHistory();
+    const history = useHistory(),
+    [modalActive,setModalActive] = useState(false);
+
 
     //redirect to CreateEdit page
     const editButtonHandler = () => {
@@ -27,12 +30,21 @@ const SinglePage = (props) => {
 
     //request server for delete  note
     const deleteButtonHandler = () => {
-        fetch('http://localhost:3001/notes/' + props.noteDetails.id, {
-            method: 'DELETE',
-        })
-            .then(res => res.text()) // or res.json()
-            .then(res => console.log(res))
+        setModalActive(true);
     };
+
+    //Modal window Yes Handler
+    // const yesButtonHandler = () => {
+    //     fetch('http://localhost:3001/notes/' + props.noteDetails.id, {
+    //         method: 'DELETE',
+    //     })
+    //         .then(res => res.text()) // or res.json()
+    //         .then(res => console.log(res))
+    //     setModalActive(false);
+    // };
+    // const cancelButtonHandler = () => {
+    //    setModalActive(false);
+    // };
 
     return (
         <div className="noteContainer">
@@ -42,6 +54,9 @@ const SinglePage = (props) => {
                 <Button buttonHandler={archiveButtonHandler} name={"Archive"}/>
                 <Button buttonHandler={deleteButtonHandler} name={"Delete"}/>
             </div>
+            {
+                modalActive ? <Modal/> : null
+            }
         </div>
     );
 };
