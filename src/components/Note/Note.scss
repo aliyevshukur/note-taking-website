@@ -1,7 +1,9 @@
 .note {
   display: flex;
   flex-direction: column;
+  text-align: center;
   width: 350px;
+  margin: 0 70px 70px 0;
 
   .note-title {
     text-align: center;
