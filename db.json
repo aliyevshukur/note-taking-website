@@ -3,9 +3,9 @@
     {
       "id": 1,
       "title": "Do StepProject",
-      "context": "Do StepProject that Nick uploaded today",
+      "context": "Do stepProject till 4 april",
       "status": true,
-      "color": "#FFF2CC"
+      "color": "F8CECC"
     },
     {
       "id": 2,
@@ -16,10 +16,10 @@
     },
     {
       "id": 3,
-      "title": "Do Homework",
-      "context": "Do Homework which Alina teacher gave for holiday",
+      "title": "Meet",
+      "context": "Dont forget to meet with friends at 8",
       "status": true,
-      "color": "#DAE8FC"
+      "color": "F8CECC"
     },
     {
       "id": 4,
@@ -51,10 +51,10 @@
     },
     {
       "id": 8,
-      "title": "Meet",
-      "context": "Meet with friends at park",
+      "title": "Walking",
+      "context": "Go walking for 15 minutes",
       "status": false,
-      "color": "#DAE8FC"
+      "color": "#F8CECC"
     },
     {
       "id": "9",

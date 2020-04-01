@@ -2,6 +2,7 @@ import React from "react";
 import Note from "../Note/Note";
 
 const NoteWrapper = props => {
+  console.log(props.notes)
   return (
     <div className={"note-wrapper"}>
       {props.notes.map(n => (
