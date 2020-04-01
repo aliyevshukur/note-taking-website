@@ -1,0 +1,21 @@
+.Modal {
+  &Window {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    top: 100%;
+    left: 100%;
+  }
+  &CancelButton {
+    width: 70%;
+    height: 35px;
+    background: indianred;
+    color: black;
+  }
+  &CancelButton {
+    width: 70%;
+    height: 35px;
+    background: limegreen;
+    color: black;
+  }
+}

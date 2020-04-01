@@ -3,43 +3,42 @@ import "./App.css";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router";
 import SinglePage from "./components/SinglePage/SinglePage";
+import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
+import CreateEdit from "./components/CreateEdit/CreateEdit";
 import Header from "./components/Header/Header";
-// import NoteWrapper from 'components/NoteWrapper';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       notes: [],
-      actualNotes: [],
-      archiveNotes: [],
-      selectedId: null
+      currentNotes: [],
+      selectedNote: {}
     };
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/notes")
+    fetch("http://localhost:3001/notes")
       .then(response => response.json())
       .then(result => {
         this.setState({
           notes: result
         });
+        this.filterActual();
       });
-    this.FilterActual();
-    this.FilterArchive();
   }
 
-  FilterActual = () => {
+  filterActual = () => {
     const actual = this.state.notes;
     this.setState({
-      actualNotes: actual.filter(item => item.status !== false)
+      currentNotes: actual.filter(item => item.status === "false")
     });
   };
 
-  FilterArchive = () => {
+  filterArchive = () => {
     const actual = this.state.notes;
     this.setState({
-      actualNotes: actual.filter(item => item.status !== true)
+      currentNotes: actual.filter(item => item.status === "true")
     });
   };
 
@@ -48,13 +47,21 @@ class App extends Component {
       <>
         <Header />
         <Switch>
-          <Route exact path={"/"} notes={this.state.actualNotes} />
-          <Route path={"/archive"} notes={this.state.archiveNotes} />
-          <Route path={"/create"} />
-          <Route path={"/edit"} />
           <Route
-            path={`/notes/${this.state.selectedId}`}
-            component={SinglePage}
+            exact
+            path={"/"}
+            render={() => (
+              <NoteWrapper
+                selectHandler={this.NoteSelectHandler}
+                notes={this.state.currentNotes}
+              />
+            )}
+          />
+          <Route path={"/create"} render={CreateEdit} />
+          <Route path={"/edit"} render={CreateEdit} />
+          <Route
+            path={`/notes/${this.state.selectedNote.id}`}
+            render={() => <SinglePage noteDetails={this.state.selectedNote} />}
           />
         </Switch>
       </>

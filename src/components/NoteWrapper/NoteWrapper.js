@@ -1,6 +1,6 @@
 import React from "react";
 
-const NoteWrapper = () => {
+const NoteWrapper = (props) => {
   return (
     <div>
       <h1>Note Wrapper</h1>
