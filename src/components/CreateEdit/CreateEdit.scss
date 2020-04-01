@@ -1,0 +1,68 @@
+@mixin button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+@mixin inputStyle {
+  width: 600px;
+  border: 1px solid black;
+  padding: 15px;
+}
+
+.create-edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    @include inputStyle();
+  }
+
+  .context {
+    @include inputStyle();
+  }
+
+  .color-buttons {
+    display: flex;
+    .button-green {
+      @include button;
+      background-color: #d5e8d4;
+    }
+
+    .button-blue {
+      @include button;
+      background-color: #dae8fc;
+    }
+
+    .button-yellow {
+      @include button;
+      background-color: #dae8fc;
+    }
+
+    .button-red {
+      @include button;
+      background-color: #f8cecc;
+    }
+  }
+
+  .color-buttons > * {
+    margin-right: 20px;
+  }
+
+  .create-edit-button {
+    width: 600px;
+    text-align: center;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid black;
+    outline: none;
+  }
+}
+
+.create-edit-form > * {
+  margin-bottom: 20px;
+}
