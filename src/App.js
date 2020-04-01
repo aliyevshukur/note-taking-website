@@ -65,7 +65,7 @@ class App extends Component {
           <Route path={"/create"} render={CreateEdit} />
           <Route path={"/edit"} render={CreateEdit} />
           <Route
-            path={`/notes/${this.state.selectedId}`}
+            path={`/notes/:${this.state.selectedId}`}
             render={() => <SinglePage noteDetails={this.state.selectedNote} />}
           />
         </Switch>
