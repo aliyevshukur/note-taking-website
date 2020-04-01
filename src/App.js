@@ -3,58 +3,72 @@ import "./App.css";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router";
 import SinglePage from "./components/SinglePage/SinglePage";
+import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
+import CreateEdit from "./components/CreateEdit/CreateEdit";
 import Header from "./components/Header/Header";
-// import NoteWrapper from 'components/NoteWrapper';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       notes: [],
-      actualNotes: [],
-      archiveNotes: [],
-      selectedId: null
+      currentNotes: [],
+      selectedId: null,
+      selectedNote: null
     };
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/notes")
+    fetch("http://localhost:3001/notes")
       .then(response => response.json())
       .then(result => {
         this.setState({
           notes: result
         });
+        console.log(this.state.notes);
+        this.filterActual();
       });
-    this.FilterActual();
-    this.FilterArchive();
   }
 
-  FilterActual = () => {
-    const actual = this.state.notes;
+  filterActual = () => {
+    const notesData = [...this.state.notes];
+    console.log("dskfjs", notesData);
+    const actualNotes = notesData.filter(note => {
+      console.log(note.status);
+      return note.status === "false";
+    });
+    console.log(actualNotes);
+
     this.setState({
-      actualNotes: actual.filter(item => item.status !== false)
+      currentNotes: actualNotes
     });
   };
 
-  FilterArchive = () => {
-    const actual = this.state.notes;
+  filterArchive = () => {
+    const notesData = [...this.state.notes];
     this.setState({
-      actualNotes: actual.filter(item => item.status !== true)
+      currentNotes: notesData.filter(notes => notes.status === "true")
     });
   };
 
   render() {
     return (
       <>
-        <Header />
+        <Header
+          filterActual={this.filterActual}
+          filterArchive={this.filterArchive}
+        />
         <Switch>
-          <Route exact path={"/"} notes={this.state.actualNotes} />
-          <Route path={"/archive"} notes={this.state.archiveNotes} />
-          <Route path={"/create"} />
-          <Route path={"/edit"} />
+          <Route
+            exact
+            path={"/"}
+            render={() => <NoteWrapper notes={this.state.currentNotes} />}
+          />
+          <Route path={"/create"} render={CreateEdit} />
+          <Route path={"/edit"} render={CreateEdit} />
           <Route
             path={`/notes/${this.state.selectedId}`}
-            component={SinglePage}
+            render={() => <SinglePage noteDetails={this.state.selectedNote} />}
           />
         </Switch>
       </>

@@ -4,61 +4,71 @@
       "id": "1",
       "title": "Do StepProject",
       "context": "Do StepProject that Nick uploaded today",
-      "status": "true"
+      "status": "true",
+      "color": "#FFF2CC"
     },
     {
       "id": "2",
       "title": "Do Sport",
       "context": "Dont forget to do sport for today",
-      "status": "true"
+      "status": "true",
+      "color": "F8CECC"
     },
     {
       "id": "3",
       "title": "Do Homework",
       "context": "Do Homework which Alina teacher gave for holiday",
-      "status": "true"
+      "status": "true",
+      "color": "#DAE8FC"
     },
     {
       "id": "4",
       "title": "Driving course",
       "context": "Go to driving course tomorrow",
-      "status": "true"
+      "status": "true",
+      "color": "#D5E8D4"
     },
     {
       "id": "5",
       "title": "Chat with girlfriend",
       "context": "Your girlfriend will wait at 10 o-clock in whatsapp",
-      "status": "true"
+      "status": "true",
+      "color": "#DAE8FC"
     },
     {
       "id": "6",
       "title": "Go Running",
       "context": "Dont forget to run 15 minutes today",
-      "status": "false"
+      "status": "false",
+      "color": "#FFF2CC"
     },
     {
       "id": "7",
       "title": "School",
       "context": "Go to school at 5 o-clock",
-      "status": "false"
+      "status": "false",
+      "color": "#F8CECC"
     },
     {
       "id": "8",
       "title": "Meet",
       "context": "Meet with friends at park",
-      "status": "false"
+      "status": "false",
+      "color": "#DAE8FC"
     },
     {
       "id": "9",
       "title": "Call Mom",
       "context": "Call mom at night",
-      "status": "false"
+      "status": "false",
+      "color": "#D5E8D4"
     },
     {
       "id": "10",
       "title": "Reports",
       "context": "Make reports for conference",
-      "status": "false"
+      "status": "false",
+      "color": "#FFF2CC"
     }
   ]
 }

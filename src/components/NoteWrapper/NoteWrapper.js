@@ -1,9 +1,12 @@
 import React from "react";
+import Note from "../Note/Note";
 
-const NoteWrapper = () => {
+const NoteWrapper = props => {
   return (
-    <div>
-      <h1>Note Wrapper</h1>
+    <div className={"note-wrapper"}>
+      {props.notes.map(n => (
+        <Note key={n.id} note={n} />
+      ))}
     </div>
   );
 };
