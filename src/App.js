@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
-import { Switch } from "react-router";
+import { Switch, Redirect } from "react-router";
 import SinglePage from "./components/SinglePage/SinglePage";
 import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
 import CreateEdit from "./components/CreateEdit/CreateEdit";
@@ -13,11 +13,16 @@ class App extends Component {
     this.state = {
       notes: [],
       currentNotes: [],
-      selectedNote: {}
+      selectedNote: {},
+      action: ""
     };
   }
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
     fetch("http://localhost:3001/notes")
       .then(response => response.json())
       .then(result => {
@@ -25,7 +30,6 @@ class App extends Component {
           notes: result
         });
         this.filterActual();
-        console.log(this.state.currentNotes);
       });
   }
 
@@ -57,12 +61,30 @@ class App extends Component {
     console.log(note);
   };
 
+  //Create post request and update json file (not working)
+  onFormSubmit = (e, noteToPost) => {
+    e.preventDefault();
+    fetch("http://localhost:3001/notes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(noteToPost)
+    })
+      .then(response => response.json())
+      .then(() => this.fetchData());
+  };
+
+  //Handler for setting action to create (handler for edit button needs to be created like this)
+  createHandler = () => {
+    this.setState({ action: "create" });
+  };
+
   render() {
     return (
       <>
         <Header
           filterActual={this.filterActual}
           filterArchive={this.filterArchive}
+          createHandler={this.createHandler}
         />
         <Switch>
           <Route
@@ -75,8 +97,18 @@ class App extends Component {
               />
             )}
           />
-          <Route path={"/create"} render={CreateEdit} />
-          <Route path={"/edit"} render={CreateEdit} />
+          <Route
+            path={"/create-edit"}
+            render={() => {
+              return (
+                <CreateEdit
+                  onFormSubmit={this.onFormSubmit}
+                  action={this.state.action}
+                  lastId={this.state.notes.length}
+                />
+              );
+            }}
+          />
           <Route
             path={`/notes/:${this.state.selectedNote.id}`}
             render={() => <SinglePage noteDetails={this.state.selectedNote} />}
