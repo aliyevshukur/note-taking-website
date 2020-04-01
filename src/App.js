@@ -13,10 +13,9 @@ class App extends Component {
     this.state = {
       notes: [],
       currentNotes: [],
-      selectedNote: {}
+      selectedNote: JSON.parse(localStorage.getItem('selectedItem')) || {}
     };
   }
-
   componentDidMount() {
     fetch("http://localhost:3001/notes")
       .then(response => response.json())
@@ -50,11 +49,10 @@ class App extends Component {
   };
 
   setSingleNote = note => {
-    // this.setState({
-    //   selectedNote: note
-    // });
-
-    console.log(note);
+    localStorage.setItem('selectedItem',JSON.stringify(note));
+    this.setState({
+      selectedNote: note
+    });
   };
 
   render() {
