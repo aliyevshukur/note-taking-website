@@ -1,3 +1,21 @@
-.noteContainer {
-  display: flex;
+.note {
+  &Container {
+    display: flex;
+    padding: 20px;
+  }
+  &Buttons{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.buttonDesign {
+  width: 280px;
+  height: 65px;
+  outline: none;
+  border-radius: 10px;
+  margin: 0 0 10px 0;
+  border: 1px solid black;
+  background: white;
+  color: black;
 }

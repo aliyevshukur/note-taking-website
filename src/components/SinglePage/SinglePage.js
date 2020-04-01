@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import Button from "../Button/Button";
 import {useHistory} from "react-router";
 import "./SinglePage.scss";
 import Modal from "../Modal/Modal";
@@ -49,11 +48,13 @@ const SinglePage = props => {
 
     return (
         <div className="noteContainer">
-            <Note note={props.noteDetails}/>
+            {
+                props.notes.length > 0 ? <Note note={props.notes[0]}/> : null
+            }
             <div className="noteButtons">
-                <Button buttonHandler={editButtonHandler} name={"Edit"}/>
-                <Button buttonHandler={archiveButtonHandler} name={"Archive"}/>
-                <Button buttonHandler={deleteButtonHandler} name={"Delete"}/>
+                <button  className="buttonDesign" onClick={editButtonHandler}>Edit</button>
+                <button  className="buttonDesign" onClick={archiveButtonHandler}>Archive</button>
+                <button  className="buttonDesign" onClick={deleteButtonHandler}>Delete</button>
             </div>
             {modalActive ? <Modal yesHandler={yesButtonHandler} cancelHandler={cancelButtonHandler}/> : null}
         </div>
