@@ -3,7 +3,9 @@ import './App.css';
 import {Route} from 'react-router-dom';
 import {Switch} from 'react-router';
 import SinglePage from "./components/SinglePage/SinglePage";
-import NoteWrapper from 'components/NoteWrapper';
+import NoteWrapper from './components/NoteWrapper/NoteWrapper'
+import CreateEdit from "./components/CreateEdit/CreateEdit";
+import Header from "./components/Header/Header";
 
 class App extends Component {
     constructor(props) {
@@ -11,12 +13,13 @@ class App extends Component {
         this.state = {
             notes: [],
             currentNotes: [],
-            selectedId: null
+            selectedId: null,
+            selectedNote: null
         }
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/notes')
+        fetch('http://localhost:3001/notes')
             .then(response => response.json())
             .then(result => {
                 this.setState({
@@ -43,15 +46,19 @@ class App extends Component {
         )
     };
 
+    NoteSelectHandler = (e) => {
+
+    };
+
     render() {
         return (
             <>
-                <p>Hello</p>
+                <Header/>
                 <Switch>
-                    <Route exact path={'/'} render={()=><NoteWrapper notes={this.state.actualNotes}/>}/>
-                    <Route path={'/create'}/>
-                    <Route path={'/edit'}/>
-                    <Route path={`/notes/${this.state.selectedId}`} component={SinglePage}/>
+                    <Route exact path={'/'} render={()=><NoteWrapper selectHandler={this.NoteSelectHandler} notes={this.state.currentNotes}/>}/>
+                    <Route path={'/create'} render={CreateEdit}/>
+                    <Route path={'/edit'} render={CreateEdit}/>
+                    <Route path={`/notes/${this.state.selectedId}`} render={()=><SinglePage noteDetails={this.state.selectedNote}/>}/>
                 </Switch>
             </>
         );
