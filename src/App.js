@@ -49,6 +49,14 @@ class App extends Component {
     });
   };
 
+  setSingleNote = note => {
+    // this.setState({
+    //   selectedNote: note
+    // });
+
+    console.log(note);
+  };
+
   render() {
     return (
       <>
@@ -60,13 +68,18 @@ class App extends Component {
           <Route
             exact
             path={"/"}
-            render={() => <NoteWrapper notes={this.state.currentNotes} />}
+            render={() => (
+              <NoteWrapper
+                notes={this.state.currentNotes}
+                setSingleNote={this.setSingleNote}
+              />
+            )}
           />
           <Route path={"/create"} render={CreateEdit} />
           <Route path={"/edit"} render={CreateEdit} />
           <Route
-            path={`/notes/:${this.state.selectedId}`}
-            render={() => <SinglePage notes={this.state.currentNotes} />}
+            path={`/notes/:${this.state.selectedNote.id}`}
+            render={() => <SinglePage noteDetails={this.state.selectedNote} />}
           />
         </Switch>
       </>
