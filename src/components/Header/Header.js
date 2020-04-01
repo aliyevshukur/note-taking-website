@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.scss";
+import { Link } from "react-router-dom";
 
 const Header = props => {
   const logoUrl =
@@ -10,19 +11,27 @@ const Header = props => {
       <div className="header-left">
         <div className="logo">
           <img src={logoUrl} alt="logo" />
-          <h1 className={"header-title"}>NotesApp</h1>
+          <Link to={"/"} className={"header-title"}>
+            NotesApp
+          </Link>
         </div>
         <div className="header-left-buttons">
-          <button className="button" onClick={props.filterActual}>
+          <Link to={"/"} className="button" onClick={props.filterActual}>
             Actual
-          </button>
-          <button className="button" onClick={props.filterArchive}>
+          </Link>
+          <Link to={"/"} className="button" onClick={props.filterArchive}>
             Archive
-          </button>
+          </Link>
         </div>
       </div>
       <div className="header-right">
-        <button className="button">Create</button>
+        <Link
+          to={"/create-edit"}
+          className="button"
+          onClick={props.createHandler}
+        >
+          Create
+        </Link>
       </div>
     </header>
   );

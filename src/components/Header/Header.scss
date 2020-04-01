@@ -3,6 +3,8 @@
   background-color: #fff;
   border: 1px solid black;
   cursor: pointer;
+  color: #000000;
+  text-decoration: none;
 }
 
 .header {
@@ -22,12 +24,20 @@
       align-items: center;
 
       .header-title {
+        text-decoration: none;
+        color: #000000;
         margin: 0;
+        font-size: 30px;
       }
     }
     .logo > img {
       width: 40px;
       height: 40px;
+    }
+
+    .header-left-buttons {
+      display: flex;
+      align-items: center;
     }
 
     .header-title {
