@@ -1,0 +1,9 @@
+.note {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+
+  .note-title {
+    text-align: center;
+  }
+}
