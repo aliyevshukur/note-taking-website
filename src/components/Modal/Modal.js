@@ -5,8 +5,8 @@ const Modal = (props) => {
         <div className="ModalWindow">
             <p>Delete this note?</p>
             <div className="ModalButtons">
-            <button onClick={props.cancelButtonHandler} className="ModalCancelButton">Cancel</button>
-            <button onClick={props.yesButtonHandler} className="ModalYesButton">Yes</button>
+            <button onClick={props.cancelHandler} className="ModalCancelButton">Cancel</button>
+            <button onClick={props.yesHandler} className="ModalYesButton">Yes</button>
             </div>
         </div>
     );
