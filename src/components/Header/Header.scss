@@ -14,11 +14,12 @@
     justify-content: space-between;
     padding: 30px;
     border: 1px solid black;
+    width: 79%;
+    margin-right: 20px;
 
     .logo {
       display: flex;
       align-items: center;
-      margin-right: 630px;
 
       .header-title {
         margin: 0;
@@ -44,6 +45,7 @@
     align-self: center;
     border: 1px solid black;
     padding: 30px;
+    width: 13%;
 
     .button {
       @include button;
