@@ -13,8 +13,7 @@ class App extends Component {
         this.state = {
             notes: [],
             currentNotes: [],
-            selectedId: null,
-            selectedNote: null
+            selectedNote: {}
         }
     }
 
@@ -24,30 +23,25 @@ class App extends Component {
             .then(result => {
                 this.setState({
                     notes: result
-                })
+                });
+                this.filterActual();
             });
-        this.FilterActual();
-        this.FilterArchive();
     }
 
-    FilterActual = () =>  {
+    filterActual = () =>  {
         const actual = this.state.notes;
         this.setState({
-            currentNotes: actual.filter((item)=> item.status !== false)
+            currentNotes: actual.filter((item)=> item.status === "false")
         }
     )
     };
 
-    FilterArchive = () =>  {
+    filterArchive = () =>  {
         const actual = this.state.notes;
         this.setState({
-                currentNotes: actual.filter((item)=> item.status !== true)
+                currentNotes: actual.filter((item)=> item.status === "true")
             }
         )
-    };
-
-    NoteSelectHandler = (e) => {
-
     };
 
     render() {
@@ -58,7 +52,7 @@ class App extends Component {
                     <Route exact path={'/'} render={()=><NoteWrapper selectHandler={this.NoteSelectHandler} notes={this.state.currentNotes}/>}/>
                     <Route path={'/create'} render={CreateEdit}/>
                     <Route path={'/edit'} render={CreateEdit}/>
-                    <Route path={`/notes/${this.state.selectedId}`} render={()=><SinglePage noteDetails={this.state.selectedNote}/>}/>
+                    <Route path={`/notes/${this.state.selectedNote.id}`} render={()=><SinglePage noteDetails={this.state.selectedNote}/>}/>
                 </Switch>
             </>
         );
