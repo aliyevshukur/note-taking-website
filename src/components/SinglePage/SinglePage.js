@@ -18,7 +18,7 @@ const SinglePage = props => {
 
     //redirect to CreateEdit page
     const editButtonHandler = () => {
-        history.replace("/edit");
+        history.replace("/create-edit");
     };
     console.log(props.noteDetails)
     //request server for update status of note

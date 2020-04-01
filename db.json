@@ -43,13 +43,6 @@
       "color": "rgb(255, 242, 204)"
     },
     {
-      "id": 8,
-      "title": "Meet",
-      "context": "Meet with friends at park",
-      "status": false,
-      "color": "rgb(213, 232, 212)"
-    },
-    {
       "id": "9",
       "title": "Call Mom",
       "context": "Call mom at night",

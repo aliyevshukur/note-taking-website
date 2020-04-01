@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
-import { Switch, Redirect } from "react-router";
+import { Switch} from "react-router";
 import SinglePage from "./components/SinglePage/SinglePage";
 import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
 import CreateEdit from "./components/CreateEdit/CreateEdit";
