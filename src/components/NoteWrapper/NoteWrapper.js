@@ -3,6 +3,7 @@ import Note from "../Note/Note";
 import "./NoteWrapper.scss";
 
 const NoteWrapper = props => {
+  console.log(props.notes)
   return (
     <div className={"note-wrapper"}>
       {props.notes.map(n => (
