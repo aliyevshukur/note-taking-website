@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
-import { Switch, Redirect } from "react-router";
+import { Switch} from "react-router";
 import SinglePage from "./components/SinglePage/SinglePage";
 import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
 import CreateEdit from "./components/CreateEdit/CreateEdit";
@@ -11,21 +11,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: [],
+      notes: JSON.parse(localStorage.getItem('notes')) || [],
       currentNotes: [],
       action: "",
       selectedNote: JSON.parse(localStorage.getItem("selectedItem")) || {}
     };
   }
-
   componentDidMount() {
     this.fetchData();
   }
 
-  fetchData() {
+  fetchData = () => {
     fetch("http://localhost:3001/notes")
       .then(response => response.json())
       .then(result => {
+        localStorage.setItem('notes',JSON.stringify(result));
         this.setState({
           notes: result
         });
@@ -62,10 +62,7 @@ class App extends Component {
   //Create post request and update json file (not working)
   onFormSubmit = (e, noteToPost) => {
     e.preventDefault();
-
-    console.log(noteToPost);
-
-    switch (this.state.action) {
+    switch(this.state.action) {
       case "create":
         fetch("http://localhost:3001/notes", {
           method: "POST",
@@ -85,12 +82,12 @@ class App extends Component {
             context: noteToPost.context,
             color: noteToPost.color
           }),
-          headers: { "Content-type": "appliaction/json" }
+          headers: { "Content-type": "application/json" }
         })
           .then(result => result.json())
-          .catch(error => console.log(error))
           .then(data => console.log(data, "success"));
         break;
+      default : return("there is error in status");
     }
   };
 
@@ -140,6 +137,7 @@ class App extends Component {
             render={() => (
               <SinglePage
                 noteDetails={this.state.selectedNote}
+                addCurrentNote={this.fetchData}
                 editHandler={this.editHandler}
               />
             )}

@@ -24,7 +24,6 @@ class CreateEdit extends React.Component {
       };
     }
   }
-
   //save input values
   onFormChange = e => {
     const currentNote = { ...this.state.currentNote };
@@ -48,7 +47,7 @@ class CreateEdit extends React.Component {
         className={"create-edit-form"}
         onSubmit={e => {
           this.props.onFormSubmit(e, this.state.currentNote);
-          console.log("state: ", this.state.currentNote);
+          console.log(this.state.currentNote);
         }}
         onChange={this.onFormChange}
       >
