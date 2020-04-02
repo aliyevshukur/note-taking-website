@@ -14,7 +14,7 @@ class App extends Component {
       notes: [],
       currentNotes: [],
       action: "",
-      selectedNote: JSON.parse(localStorage.getItem('selectedItem')) || {}
+      selectedNote: JSON.parse(localStorage.getItem("selectedItem")) || {}
     };
   }
 
@@ -37,7 +37,6 @@ class App extends Component {
     const notesData = [...this.state.notes];
 
     const actualNotes = notesData.filter(note => {
-      console.log(note.status);
       return note.status === false;
     });
 
@@ -54,7 +53,7 @@ class App extends Component {
   };
 
   setSingleNote = note => {
-    localStorage.setItem('selectedItem',JSON.stringify(note));
+    localStorage.setItem("selectedItem", JSON.stringify(note));
     this.setState({
       selectedNote: note
     });
@@ -63,18 +62,38 @@ class App extends Component {
   //Create post request and update json file (not working)
   onFormSubmit = (e, noteToPost) => {
     e.preventDefault();
-    fetch("http://localhost:3001/notes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(noteToPost)
-    })
-      .then(response => response.json())
-      .then(() => this.fetchData());
+
+    switch (this.state.action) {
+      case "create":
+        fetch("http://localhost:3001/notes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(noteToPost)
+        })
+          .then(response => response.json())
+          .then(() => this.fetchData());
+        console.log("create");
+
+        break;
+      case "edit":
+        fetch(`http://localhost:3001/notes/${noteToPost.id}`, {
+          method: "PATCH",
+          headers: { "Content-type": "appliaction/json" },
+          body: JSON.stringify(noteToPost)
+        })
+          .then(result => result.json())
+          .then(data => console.log(data, "success"));
+        break;
+    }
   };
 
   //Handler for setting action to create (handler for edit button needs to be created like this)
   createHandler = () => {
     this.setState({ action: "create" });
+  };
+
+  editHandler = () => {
+    this.setState({ action: "edit" });
   };
 
   render() {
@@ -103,14 +122,20 @@ class App extends Component {
                 <CreateEdit
                   onFormSubmit={this.onFormSubmit}
                   action={this.state.action}
-                  lastId={this.state.notes.length}
+                  selectedNote={this.state.selectedNote}
+                  lastId={this.state.notes[this.state.notes.length - 1].id}
                 />
               );
             }}
           />
           <Route
             path={`/notes/:${this.state.selectedNote.id}`}
-            render={() => <SinglePage noteDetails={this.state.selectedNote} />}
+            render={() => (
+              <SinglePage
+                noteDetails={this.state.selectedNote}
+                editHandler={this.editHandler}
+              />
+            )}
           />
         </Switch>
       </>
