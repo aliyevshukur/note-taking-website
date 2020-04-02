@@ -57,18 +57,33 @@ class App extends Component {
         });
     };
 
-    //Create post request and update json file (not working)
-    onFormSubmit = (e, noteToPost) => {
-        e.preventDefault();
+  //Create post request and update json file (not working)
+  onFormSubmit = (e, noteToPost) => {
+    e.preventDefault();
+
+    switch (this.state.action) {
+      case "create":
         fetch("http://localhost:3001/notes", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(noteToPost)
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(noteToPost)
         })
-            .then(response => response.json())
-            .catch(error => console.log(error))
-            .then(() => this.fetchData());
-    };
+          .then(response => response.json())
+          .then(() => this.fetchData());
+        console.log("create");
+
+        break;
+      case "edit":
+        fetch(`http://localhost:3001/notes/${noteToPost.id}`, {
+          method: "PATCH",
+          headers: { "Content-type": "appliaction/json" },
+          body: JSON.stringify(noteToPost)
+        })
+          .then(result => result.json())
+          .then(data => console.log(data, "success"));
+        break;
+    }
+  };
 
     //Handler for setting action to create (handler for edit button needs to be created like this)
     createHandler = () => {
@@ -83,46 +98,52 @@ class App extends Component {
         })
     };
 
-    render() {
-        return (
-            <>
-                <Header
-                    filterActual={this.filterActual}
-                    filterArchive={this.filterArchive}
-                    createHandler={this.createHandler}
+  render() {
+    return (
+      <>
+        <Header
+          filterActual={this.filterActual}
+          filterArchive={this.filterArchive}
+          createHandler={this.createHandler}
+        />
+        <Switch>
+          <Route
+            exact
+            path={"/"}
+            render={() => (
+              <NoteWrapper
+                notes={this.state.currentNotes}
+                setSingleNote={this.setSingleNote}
+              />
+            )}
+          />
+          <Route
+            path={"/create-edit"}
+            render={() => {
+              return (
+                <CreateEdit
+                  onFormSubmit={this.onFormSubmit}
+                  action={this.state.action}
+                  selectedNote={this.state.selectedNote}
+                  lastId={this.state.notes[this.state.notes.length - 1].id}
                 />
-                <Switch>
-                    <Route
-                        exact
-                        path={"/"}
-                        render={() => (
-                            <NoteWrapper
-                                notes={this.state.currentNotes}
-                                setSingleNote={this.setSingleNote}
-                            />
-                        )}
-                    />
-                    <Route
-                        path={"/create-edit"}
-                        render={() => {
-                            return (
-                                <CreateEdit
-                                    onFormSubmit={this.onFormSubmit}
-                                    action={this.state.action}
-                                    lastId={this.state.notes[this.state.notes.length - 1].id}
-                                    note={this.state.selectedNote}
-                                />
-                            );
-                        }}
-                    />
-                    <Route
-                        path={`/notes/:${this.state.selectedNote.id}`}
-                        render={() => <SinglePage editHandler={this.editHandler} addCurrentNote={this.fetchData} noteDetails={this.state.selectedNote}/>}
-                    />
-                </Switch>
-            </>
-        );
-    }
+              );
+            }}
+          />
+          <Route
+            path={`/notes/:${this.state.selectedNote.id}`}
+            render={() => (
+              <SinglePage
+                noteDetails={this.state.selectedNote}
+                addCurrentNote={this.fetchData}
+                editHandler={this.editHandler}
+              />
+            )}
+          />
+        </Switch>
+      </>
+    );
+  }
 }
 
 export default App;
