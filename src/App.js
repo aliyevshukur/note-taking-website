@@ -82,10 +82,14 @@ class App extends Component {
             context: noteToPost.context,
             color: noteToPost.color
           }),
-          headers: { "Content-type": "application/json" }
+          headers: {
+            "Accept": "application/json",
+            "Content-type": "application/json"
+          }
         })
           .then(result => result.json())
-          .then(data => console.log(data, "success"));
+          .catch(error => console.log(error))
+          .then(() => this.fetchData());
         break;
       default : return("there is error in status");
     }

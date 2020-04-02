@@ -5,6 +5,7 @@
   cursor: pointer;
   color: #000000;
   text-decoration: none;
+  outline: none;
 }
 
 .header {
@@ -22,6 +23,8 @@
     .logo {
       display: flex;
       align-items: center;
+      outline: none;
+      text-decoration: none;
 
       .header-title {
         text-decoration: none;

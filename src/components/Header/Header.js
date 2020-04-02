@@ -9,12 +9,12 @@ const Header = props => {
   return (
     <header className={"header"}>
       <div className="header-left">
-        <div className="logo">
+        <Link to={'/'} className="logo">
           <img src={logoUrl} alt="logo" />
-          <Link to={"/"} className={"header-title"}>
+          <h1 className={"header-title"}>
             NotesApp
-          </Link>
-        </div>
+          </h1>
+        </Link>
         <div className="header-left-buttons">
           <Link to={"/"} className="button" onClick={props.filterActual}>
             Actual
