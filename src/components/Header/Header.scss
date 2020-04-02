@@ -1,9 +1,8 @@
 @mixin button {
   padding: 10px 80px;
-  background-color: #fff;
-  border: 1px solid black;
+  background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7));
   cursor: pointer;
-  color: #000000;
+  color: #fff;
   text-decoration: none;
   outline: none;
 }
@@ -11,12 +10,12 @@
 .header {
   display: flex;
   justify-content: space-between;
+  background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
 
   .header-left {
     display: flex;
     justify-content: space-between;
     padding: 30px;
-    border: 1px solid black;
     width: 79%;
     margin-right: 20px;
 
@@ -28,7 +27,7 @@
 
       .header-title {
         text-decoration: none;
-        color: #000000;
+        color: #fff;
         margin: 0;
         font-size: 30px;
       }

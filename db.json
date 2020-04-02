@@ -38,16 +38,16 @@
     {
       "id": 6,
       "title": "Go Running",
-      "context": "Dont forget to run 15 minutes today",
+      "context": "Dont forget to run 15 minutes today dsf sd",
       "status": false,
-      "color": "rgb(255, 242, 204)"
+      "color": "rgb(213, 232, 212)"
     },
     {
       "id": 7,
-      "title": "Meet",
+      "title": "Meet sdf sdf sd",
       "context": "Meet with friends at park",
-      "status": false,
-      "color": "rgb(213, 232, 212)"
+      "status": true,
+      "color": "rgb(218, 232, 252)"
     },
     {
       "id": 8,
@@ -79,6 +79,13 @@
       "context": "I am going to get some sleep. I am sooo tired",
       "status": false,
       "color": "rgb(255, 242, 204)"
+    },
+    {
+      "id": 14,
+      "title": "fgfg",
+      "context": "fgdg",
+      "status": false,
+      "color": "rgb(213, 232, 212)"
     }
   ]
 }
