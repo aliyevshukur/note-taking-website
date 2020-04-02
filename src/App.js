@@ -1,67 +1,67 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./App.css";
-import {Route} from "react-router-dom";
-import {Switch} from "react-router";
+import { Route } from "react-router-dom";
+import { Switch} from "react-router";
 import SinglePage from "./components/SinglePage/SinglePage";
 import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
 import CreateEdit from "./components/CreateEdit/CreateEdit";
 import Header from "./components/Header/Header";
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            notes: [],
-            currentNotes: [],
-            action: "",
-            selectedNote: JSON.parse(localStorage.getItem('selectedItem')) || {}
-        };
-    }
-
-    componentDidMount() {
-        this.fetchData();
-    }
-
-    fetchData = () => {
-        fetch("http://localhost:3001/notes")
-            .then(response => response.json())
-            .then(result => {
-                this.setState({
-                    notes: result
-                });
-                this.filterActual();
-                this.filterArchive();
-            });
+  constructor(props) {
+    super(props);
+    this.state = {
+      notes: JSON.parse(localStorage.getItem('notes')) || [],
+      currentNotes: [],
+      action: "",
+      selectedNote: JSON.parse(localStorage.getItem("selectedItem")) || {}
     };
+  }
+  componentDidMount() {
+    this.fetchData();
+  }
 
-    filterActual = () => {
-        const notesData = [...this.state.notes];
-
-        const actualNotes = notesData.filter(note => note.status === false);
-
+  fetchData = () => {
+    fetch("http://localhost:3001/notes")
+      .then(response => response.json())
+      .then(result => {
+        localStorage.setItem('notes',JSON.stringify(result));
         this.setState({
-            currentNotes: actualNotes
+          notes: result
         });
-    };
+        this.filterActual();
+      });
+  }
 
-    filterArchive = () => {
-        const notesData = [...this.state.notes];
-        this.setState({
-            currentNotes: notesData.filter(notes => notes.status === true)
-        });
-    };
+  filterActual = () => {
+    const notesData = [...this.state.notes];
 
-    setSingleNote = note => {
-        localStorage.setItem('selectedItem', JSON.stringify(note));
-        this.setState({
-            selectedNote: note
-        });
-    };
+    const actualNotes = notesData.filter(note => {
+      return note.status === false;
+    });
+
+    this.setState({
+      currentNotes: actualNotes
+    });
+  };
+
+  filterArchive = () => {
+    const notesData = [...this.state.notes];
+    this.setState({
+      currentNotes: notesData.filter(notes => notes.status === true)
+    });
+  };
+
+  setSingleNote = note => {
+    localStorage.setItem("selectedItem", JSON.stringify(note));
+    this.setState({
+      selectedNote: note
+    });
+  };
 
   //Create post request and update json file (not working)
   onFormSubmit = (e, noteToPost) => {
     e.preventDefault();
-
     switch(this.state.action) {
       case "create":
         fetch("http://localhost:3001/notes", {
@@ -77,28 +77,28 @@ class App extends Component {
       case "edit":
         fetch(`http://localhost:3001/notes/${noteToPost.id}`, {
           method: "PATCH",
-          headers: { "Content-type": "appliaction/json" },
-          body: JSON.stringify(noteToPost)
+          body: JSON.stringify({
+            title: noteToPost.title,
+            context: noteToPost.context,
+            color: noteToPost.color
+          }),
+          headers: { "Content-type": "application/json" }
         })
           .then(result => result.json())
           .then(data => console.log(data, "success"));
         break;
-        default : return console.log("there is error");
+      default : return("there is error in status");
     }
   };
 
-    //Handler for setting action to create (handler for edit button needs to be created like this)
-    createHandler = () => {
-        this.setState({
-            action: "create"
-        });
-    };
+  //Handler for setting action to create (handler for edit button needs to be created like this)
+  createHandler = () => {
+    this.setState({ action: "create" });
+  };
 
-    editHandler = () => {
-        this.setState({
-            action: "edit"
-        })
-    };
+  editHandler = () => {
+    this.setState({ action: "edit" });
+  };
 
   render() {
     return (

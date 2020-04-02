@@ -4,45 +4,31 @@ import "./CreateEdit.scss";
 class CreateEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentNote: {
-        id: props.lastId + 1,
-        title: "",
-        context: "",
-        status: false,
-        color: ""
-      },
-      titleDefaultValue: "",
-      contextDefaultValue: ""
-    };
-  }
 
-  componentDidMount() {
-    // fill the form if action type is edit
-    console.log(this.props.selectedNote);
-    if (this.props.action === "edit") {
-      this.setState({
-        titleDefaultValue: this.props.selectedNote.title,
-        contextDefaultValue: this.props.selectedNote.context
-      });
-      console.log("yup");
+    this.titleDefaultValue = "";
+    this.contextDefaultValue = "";
+
+    if (props.action === "edit") {
+      this.state = {
+        currentNote: { ...props.selectedNote }
+      };
+    } else {
+      this.state = {
+        currentNote: {
+          id: props.lastId + 1,
+          title: "",
+          context: "",
+          status: false,
+          color: ""
+        }
+      };
     }
   }
   //save input values
   onFormChange = e => {
     const currentNote = { ...this.state.currentNote };
-    console.log("before", currentNote);
-
-    // Object.keys(currentNote).forEach(k => {
-    //   if (k === e.target.name) {
-    //     currentNote[k] = e.target.value;
-    //     console.log("sdsdsdadasdasdawewedw");
-    //   }
-    // });
 
     currentNote[e.target.name] = e.target.value;
-
-    console.log(currentNote);
 
     this.setState({ currentNote });
   };
@@ -70,7 +56,7 @@ class CreateEdit extends React.Component {
         <input
           name="title"
           type="text"
-          defaultValue={this.state.titleDefaultValue}
+          defaultValue={this.state.currentNote.title}
           className={"title"}
         />
 
@@ -79,7 +65,7 @@ class CreateEdit extends React.Component {
           id="1"
           cols="30"
           rows="10"
-          defaultValue={this.state.contextDefaultValue}
+          defaultValue={this.state.currentNote.context}
           className={"context"}
         />
 

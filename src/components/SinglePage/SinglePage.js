@@ -34,7 +34,10 @@ const SinglePage = props => {
       }
     })
       .then(response => response.json())
-      .then(result => console.log(result));
+      .then(result => {
+        props.addCurrentNote();
+        history.push('/');
+      });
   };
 
   //request server for delete  note
@@ -48,7 +51,10 @@ const SinglePage = props => {
       method: "DELETE"
     })
       .then(res => res.text()) // or res.json()
-      .then(() => props.addCurrentNote());
+      .then(() => {
+        props.addCurrentNote();
+        history.push('/');
+      });
     setModalActive(false);
   };
 
