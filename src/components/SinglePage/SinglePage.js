@@ -4,13 +4,22 @@ import "./SinglePage.scss";
 import Modal from "../Modal/Modal";
 
 const SinglePage = props => {
+
+  const createBorderColor = (color) => {
+    let secondColor = color.slice(4, 15);
+    let arr = secondColor.split(',');
+    arr = arr.map(el => parseInt(el) - 70);
+    secondColor = `rgb(${arr[0]},${arr[1]},${arr[2]})`;
+    return secondColor;
+  };
+
   const noteStyle = {
     backgroundColor: `${props.noteDetails.color}`,
-    border: `1px solid ${props.noteDetails.color}`
+    border: `1.5px solid ${createBorderColor(props.noteDetails.color)}`
   };
 
   const noteTitleStyle = {
-    borderBottom: `1px solid ${props.noteDetails.color}`
+     borderBottom : `1.5px solid ${createBorderColor(props.noteDetails.color)}`
   };
 
   const history = useHistory(),
@@ -34,7 +43,10 @@ const SinglePage = props => {
       }
     })
       .then(response => response.json())
-      .then(result => console.log(result));
+      .then(result => {
+        props.addCurrentNote();
+        history.push('/');
+      });
   };
 
   //request server for delete  note
@@ -48,7 +60,10 @@ const SinglePage = props => {
       method: "DELETE"
     })
       .then(res => res.text()) // or res.json()
-      .then(res => console.log(res));
+      .then(() => {
+        props.addCurrentNote();
+        history.push('/');
+      });
     setModalActive(false);
   };
 
@@ -59,10 +74,14 @@ const SinglePage = props => {
   return (
     <div className="notesContainer">
       <div className="notes" style={noteStyle}>
-        <h1 style={noteTitleStyle} className="notes-title">
+        <div style={noteTitleStyle}>
+        <h1 className="notes-title">
           {props.noteDetails.title}
         </h1>
-        <span className="singleContext">{props.noteDetails.context}</span>
+        </div>
+        <div className="singleContext">
+        <span>{props.noteDetails.context}</span>
+        </div>
       </div>
 
       <div className="notesButtons">
