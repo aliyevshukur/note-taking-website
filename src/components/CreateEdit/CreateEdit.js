@@ -60,7 +60,7 @@ class CreateEdit extends React.Component {
       <form
         className={"create-edit-form"}
         onSubmit={e => {
-          this.props.onFormSubmit(e, this.state.currentNote, this.props.action);
+          this.props.onFormSubmit(e, this.state.currentNote);
           console.log(this.state.currentNote);
         }}
         onChange={this.onFormChange}

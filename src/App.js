@@ -30,8 +30,9 @@ class App extends Component {
                     notes: result
                 });
                 this.filterActual();
+                this.filterArchive();
             });
-    }
+    };
 
     filterActual = () => {
         const notesData = [...this.state.notes];
@@ -61,7 +62,7 @@ class App extends Component {
   onFormSubmit = (e, noteToPost) => {
     e.preventDefault();
 
-    switch (this.state.action) {
+    switch(this.state.action) {
       case "create":
         fetch("http://localhost:3001/notes", {
           method: "POST",
@@ -82,6 +83,7 @@ class App extends Component {
           .then(result => result.json())
           .then(data => console.log(data, "success"));
         break;
+        default : return console.log("there is error");
     }
   };
 

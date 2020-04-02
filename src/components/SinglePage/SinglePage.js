@@ -48,7 +48,7 @@ const SinglePage = props => {
       method: "DELETE"
     })
       .then(res => res.text()) // or res.json()
-      .then(res => console.log(res));
+      .then(() => props.addCurrentNote());
     setModalActive(false);
   };
 
