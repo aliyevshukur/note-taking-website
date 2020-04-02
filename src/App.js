@@ -85,11 +85,14 @@ class App extends Component {
             context: noteToPost.context,
             color: noteToPost.color
           }),
-          headers: { "Content-type": "appliaction/json" }
+          headers: {
+            "Accept": "application/json",
+            "Content-type": "application/json"
+          }
         })
           .then(result => result.json())
           .catch(error => console.log(error))
-          .then(data => console.log(data, "success"));
+          .then(() => this.fetchData());
         break;
     }
   };

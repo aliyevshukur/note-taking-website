@@ -47,6 +47,9 @@
       @include button;
       background-color: #f8cecc;
     }
+    .button-green:focus {
+      background-color: black;
+    }
   }
 
   .color-buttons > * {
@@ -59,7 +62,6 @@
     padding: 15px;
     background-color: #fff;
     border: 1px solid black;
-    outline: none;
   }
 }
 
