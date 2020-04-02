@@ -74,19 +74,19 @@ class CreateEdit extends React.Component {
 
           <div
             className="button-green"
-            onClick={() => this.setColor("#D5E8D4")}
+            onClick={() => this.setColor("rgb(213,232,212)")}
           ></div>
           <div
             className="button-blue"
-            onClick={() => this.setColor("#DAE8FC")}
+            onClick={() => this.setColor("rgb(218,232,252)")}
           ></div>
           <div
             className="button-yellow"
-            onClick={() => this.setColor("#FFF2CC")}
+            onClick={() => this.setColor("rgb(255,242,204)")}
           ></div>
           <div
             className="button-red"
-            onClick={() => this.setColor("#F8CECC")}
+            onClick={() => this.setColor("rgb(248,206,204)")}
           ></div>
         </div>
 
