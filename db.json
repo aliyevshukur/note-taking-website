@@ -43,73 +43,46 @@
       "color": "rgb(255, 242, 204)"
     },
     {
-      "id": 8,
+      "id": 7,
       "title": "Meet",
       "context": "Meet with friends at park",
       "status": false,
       "color": "rgb(213, 232, 212)"
     },
     {
-      "id": "9",
+      "id": 8,
       "title": "Call Mom",
       "context": "Call mom at night",
       "status": false,
       "color": "rgb(213, 232, 212)"
     },
     {
-      "id": 10,
+      "id": 9,
       "title": "Reports",
       "context": "Make reports for conference",
       "status": false,
       "color": "rgb(255, 242, 204)"
     },
     {
-      "title": "dfdfsdf",
-      "context": "sdfsdfdsfds",
-      "color": "green",
-      "id": 11
+      "id": 22,
+      "title": "My lovely note to Nurmahammad",
+      "context": "Hello, dear Nurmahammad. I hope you are doing well and i hope coding isn't stressful for you. Take care of yourself. Bye... ",
+      "status": false,
+      "color": "#F8CECC"
     },
     {
-      "id": 12,
-      "title": "sdsdsds",
-      "context": "sdsdsds",
-      "status": false,
-      "color": "blue"
+      "id": 23,
+      "title": "sdsds",
+      "context": "TESSSTTTT",
+      "status": true,
+      "color": "#DAE8FC"
     },
     {
-      "id": 13,
-      "title": "sdsadasdasd",
-      "context": "asdsadasdasda",
+      "id": 24,
+      "title": "To mys sister Vusala",
+      "context": "Bring me a tea",
       "status": false,
-      "color": "red"
-    },
-    {
-      "id": 14,
-      "title": "sdsdsadsdsad",
-      "context": "asdasdsadsadasd",
-      "status": false,
-      "color": "blue"
-    },
-    {
-      "id": 15,
-      "title": "adasdsadsadsadsa",
-      "context": "asdsadsadsada",
-      "status": false,
-      "color": "yellow"
-    },
-    {
-      "id": 16,
-      "title": "asdasda",
-      "context": "asdsadsadsa",
-      "status": false,
-      "color": "green"
-    },
-    {
-      "id": 17,
-      "title": "adsadsad",
-      "context": "asdsadsadsa",
-      "status": false,
-      "color": "yellow"
+      "color": "#DAE8FC"
     }
   ]
 }
