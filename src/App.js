@@ -63,6 +63,8 @@ class App extends Component {
   onFormSubmit = (e, noteToPost) => {
     e.preventDefault();
 
+    console.log(noteToPost);
+
     switch (this.state.action) {
       case "create":
         fetch("http://localhost:3001/notes", {
@@ -78,10 +80,15 @@ class App extends Component {
       case "edit":
         fetch(`http://localhost:3001/notes/${noteToPost.id}`, {
           method: "PATCH",
-          headers: { "Content-type": "appliaction/json" },
-          body: JSON.stringify(noteToPost)
+          body: JSON.stringify({
+            title: noteToPost.title,
+            context: noteToPost.context,
+            color: noteToPost.color
+          }),
+          headers: { "Content-type": "appliaction/json" }
         })
           .then(result => result.json())
+          .catch(error => console.log(error))
           .then(data => console.log(data, "success"));
         break;
     }

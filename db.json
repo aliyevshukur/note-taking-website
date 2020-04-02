@@ -64,25 +64,7 @@
       "color": "rgb(255, 242, 204)"
     },
     {
-      "id": 22,
-      "title": "My lovely note to Nurmahammad",
-      "context": "Hello, dear Nurmahammad. I hope you are doing well and i hope coding isn't stressful for you. Take care of yourself. Bye... ",
-      "status": false,
-      "color": "#F8CECC"
-    },
-    {
-      "id": 23,
-      "title": "sdsds",
-      "context": "TESSSTTTT",
-      "status": true,
-      "color": "#DAE8FC"
-    },
-    {
-      "id": 24,
-      "title": "To mys sister Vusala",
-      "context": "Bring me a tea",
-      "status": false,
-      "color": "#DAE8FC"
+      "id": 10
     }
   ]
 }
