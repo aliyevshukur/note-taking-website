@@ -13,7 +13,7 @@ class CreateEdit extends React.Component {
     };
 
     this.title = React.createRef();
-    // this.context = React.createRef();
+    this.context = React.createRef();
   }
 
   componentDidMount() {
@@ -48,9 +48,9 @@ class CreateEdit extends React.Component {
           id="1"
           cols="30"
           rows="10"
-          // ref={this.context}
+          ref={this.context}
           className={"context"}
-        ></textarea>
+        />
 
         <div className="color-buttons">
           <p>Color:</p>

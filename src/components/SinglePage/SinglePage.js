@@ -18,6 +18,7 @@ const SinglePage = props => {
 
     //redirect to CreateEdit page
     const editButtonHandler = () => {
+        props.editHandler();
         history.replace("/create-edit");
     };
     console.log(props.noteDetails)
@@ -47,7 +48,7 @@ const SinglePage = props => {
             method: 'DELETE',
         })
             .then(res => res.text()) // or res.json()
-            .then(res => console.log(res));
+            .then(() => props.addCurrentNote());
         setModalActive(false);
     };
 
