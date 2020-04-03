@@ -3,16 +3,13 @@ import "./Header.scss";
 import { Link } from "react-router-dom";
 
 const Header = props => {
-  const logoUrl =
-    "https://lh3.googleusercontent.com/o4pIUj_igQB6-E3POw1aHoONrQ6tF9Uq7cfn6MzzSwNBFiwoK21i85mwWSU3zAlwiIw";
-
   return (
     <header className={"header"}>
       <div className="header-left">
         <Link to={'/'} className="logo">
-          <img src={logoUrl} alt="logo" />
+          <img src={require("../../img/siteLogo.png")} alt="logo"  height={"30px"} width={"20px"}/>
           <h1 className={"header-title"}>
-            NotesApp
+            Notes<span className={"header-title-part"}>App</span>
           </h1>
         </Link>
         <div className="header-left-buttons">
