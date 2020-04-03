@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Note = props => {
 
-  const createBorderColor = (color) => {
+  const darkerColor = (color) => {
     let secondColor = color.slice(4, 15);
     let arr = secondColor.split(',');
     arr = arr.map(el => parseInt(el) - 70);
@@ -18,11 +18,11 @@ const Note = props => {
 
   const noteStyle = {
     backgroundColor: `${props.note.color}`,
-    border: `1px solid ${createBorderColor(props.note.color)}`
+    border: `1px solid ${darkerColor(props.note.color)}`
   };
 
   const noteTitleStyle = {
-    borderBottom: `1px solid ${createBorderColor(props.note.color)}`
+    borderBottom: `1px solid ${darkerColor(props.note.color)}`
   };
 
   return (

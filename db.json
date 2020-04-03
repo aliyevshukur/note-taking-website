@@ -36,13 +36,6 @@
       "color": "rgb(255,242,204)"
     },
     {
-      "id": 25,
-      "title": "Game",
-      "context": "gfggfgfgfgf",
-      "status": true,
-      "color": "rgb(255,242,204)"
-    },
-    {
       "id": 8,
       "title": "Call Mom",
       "context": "Call mom at night :)",
@@ -101,9 +94,9 @@
     {
       "id": 18,
       "title": "Game",
-      "context": "wdfgy  gdjha hsahgsa asjasj ajsahjsh hajabdj bahbsjjabska ajbskjabs",
+      "context": "sdasdsad",
       "status": false,
-      "color": "rgb(248,206,204)"
+      "color": "rgb(213,232,212)"
     },
     {
       "id": 19,
@@ -120,32 +113,11 @@
       "color": "rgb(255,242,204)"
     },
     {
-      "id": 21,
-      "title": "fsdffds",
-      "context": "sdfdsas",
-      "status": true,
-      "color": "rgb(213,232,212)"
-    },
-    {
-      "id": 22,
-      "title": "agfshgasfahgfsa",
-      "context": "fghtgfds",
-      "status": true,
-      "color": "rgb(248,206,204)"
-    },
-    {
-      "id": 23,
-      "title": "fds",
-      "context": "dfgfds",
-      "status": true,
+      "id": 25,
+      "title": "fgdfgf",
+      "context": "dfgdfgf",
+      "status": false,
       "color": "rgb(218,232,252)"
-    },
-    {
-      "id": 24,
-      "title": "dfew",
-      "context": "wfe",
-      "status": true,
-      "color": "rgb(213,232,212)"
     }
   ]
 }

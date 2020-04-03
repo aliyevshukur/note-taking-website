@@ -3,8 +3,7 @@
 .note {
   display: flex;
   flex-direction: column;
-  width: calc(100% / 3 - 62px) ;
-  height: 260px;
+  width: calc(100% / 3 - 62px);
   margin: 30px;
   text-align: center;
   font-family: Arial, sans-serif;
@@ -23,6 +22,7 @@
   .context{
     padding: 10px;
     margin: 0;
+    height: 220px;
   }
 
   @media screen and (max-width: base.$break-large){
