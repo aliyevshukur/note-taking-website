@@ -7,7 +7,7 @@ const Header = props => {
     <header className={"header"}>
       <div className="header-left">
         <Link to={'/'} className="logo">
-          <img src={require("../../img/siteLogo.png")} alt="logo"  height={"30px"} width={"20px"}/>
+          <img src={require("../../img/SiteLogo.png")} alt="logo"  height={"30px"} width={"20px"}/>
           <h1 className={"header-title"}>
             Notes<span className={"header-title-part"}>App</span>
           </h1>
