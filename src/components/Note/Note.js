@@ -36,7 +36,7 @@ const Note = props => {
       <h1 style={noteTitleStyle} className={"note-title"}>
         {props.note.title}
       </h1>
-      <p className="context">{truncated(props.note.context, 300)}</p>
+      <p className="context">{truncated(props.note.context, 200)}</p>
     </Link>
   );
 };

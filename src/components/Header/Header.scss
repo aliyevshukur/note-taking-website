@@ -1,72 +1,62 @@
-@mixin button {
-  padding: 10px 80px;
-  background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7));
-  cursor: pointer;
-  color: #fff;
-  text-decoration: none;
-  outline: none;
-}
+@use '../../base.scss';
 
 .header {
   display: flex;
   justify-content: space-between;
-  background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4));
+  align-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 
-  .header-left {
+
+  .note-logo {
     display: flex;
-    justify-content: space-between;
-    padding: 30px;
-    width: 79%;
-    margin-right: 20px;
+    align-items: center;
+    outline: none;
+    text-decoration: none;
 
-    .logo {
-      display: flex;
-      align-items: center;
-      outline: none;
+    .header-title {
       text-decoration: none;
+      color: #fff;
+      margin: 0;
+      font-size: 34px;
+      line-height: 27px;
+      padding: 30px 0;
 
-      .header-title {
-        text-decoration: none;
-        color: #fff;
-        margin: 0;
-        font-size: 30px;
-        padding: 14px 0 0 3px;
-
-        &-part {
-          color: rgb(15, 151, 247);
-          padding-left: 1px;
-        }
+      &-part {
+        color: rgb(15, 151, 247);
+        padding-left: 1px;
       }
     }
-    .logo > img {
-      width: 40px;
-      height: 40px;
-    }
 
-    .header-left-buttons {
-      display: flex;
-      align-items: center;
-    }
+  }
+
+  .note-logo > img {
+    width: 40px;
+    height: 40px;
+    padding: 30px 0 42px 30px;
+  }
+
+  .header-buttons {
+    display: flex;
+    justify-content: space-between;;
 
     .header-title {
       font-size: 30px;
     }
 
     .button {
-      @include button;
-      margin-left: 20px;
+      @include base.button;
+      margin: 0 20px;
+      @media screen and (max-width: base.$break-large){
+        padding: 10px 40px;
+        margin: 0 10px;
+      }
     }
-  }
-
-  .header-right {
-    display: flex;
-    align-self: center;
-    border: 1px solid black;
-    padding: 35px;
-    width: 13%;
-
-    .button {
-      @include button;
+    @media screen and (max-width: base.$break-small){
+      flex-direction: column;
     }
+
+
   }
 }
+
+

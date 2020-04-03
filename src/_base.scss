@@ -1,0 +1,11 @@
+@mixin button {
+  padding: 10px 80px;
+  background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7));
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+
+$break-small: 680px;
+$break-large: 970px;
