@@ -28,6 +28,7 @@ const Note = props => {
       style={noteStyle}
       className={"note"}
     >
+      <img src={require("../../img/pin_PNG100.png")} alt={"pin_img"} height={"47px"} width={"50px"} style={{"margin":"0px auto"}}/>
       <h1 style={noteTitleStyle} className={"note-title"}>
         {props.note.title}
       </h1>

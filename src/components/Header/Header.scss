@@ -10,7 +10,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+  background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4));
 
   .header-left {
     display: flex;
@@ -30,6 +30,12 @@
         color: #fff;
         margin: 0;
         font-size: 30px;
+        padding: 14px 0 0 3px;
+
+        &-part {
+          color: rgb(15, 151, 247);
+          padding-left: 1px;
+        }
       }
     }
     .logo > img {
@@ -56,7 +62,7 @@
     display: flex;
     align-self: center;
     border: 1px solid black;
-    padding: 30px;
+    padding: 35px;
     width: 13%;
 
     .button {

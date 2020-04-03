@@ -1,5 +1,13 @@
 .note-wrapper {
   display: flex;
-  padding: 40px 153px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 190px;
   flex-wrap: wrap;
+  &::after {
+    content: "";
+    width: calc(100% / 4);
+    margin: 30px;
+  }
 }
+
