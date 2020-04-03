@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import "./SinglePage.scss";
 import Modal from "../Modal/Modal";
+import pinImage from '../../img/pin_PNG100.png';
 
 const SinglePage = props => {
 
@@ -75,6 +76,7 @@ const SinglePage = props => {
     <div className="notesContainer">
       <div className="notes" style={noteStyle}>
         <div style={noteTitleStyle}>
+          <img src={pinImage} alt={"pin_img"} height={"67px"} width={"70px"} style={{"margin":"0px auto"}}/>
         <h1 className="notes-title">
           {props.noteDetails.title}
         </h1>
