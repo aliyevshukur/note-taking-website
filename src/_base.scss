@@ -1,10 +1,15 @@
 @mixin button {
-  padding: 10px 80px;
   background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7));
-  cursor: pointer;
   color: #fff;
+  padding: 10px 80px;
   text-decoration: none;
+  cursor: pointer;
   outline: none;
+  border: none;
+}
+
+@mixin button-hover{
+  background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8));
 }
 
 $break-small: 680px;
