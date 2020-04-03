@@ -57,95 +57,39 @@
       "color": "rgb(255, 242, 204)"
     },
     {
-      "id": 12,
-      "title": "S.A NURU",
-      "context": "Narahat olma qaqa pox olan her seyi gule dondereciyik))",
+      "id": 10,
+      "title": "AAAA",
+      "context": "AAAAA",
       "status": false,
-      "color": "rgb(218, 232, 252)"
-    },
-    {
-      "id": 15,
-      "title": "fgfg",
-      "context": "fgdg",
-      "status": true,
-      "color": "rgb(213, 232, 212)"
-    },
-    {
-      "id": 16,
-      "title": "fges",
-      "context": "sdfs",
-      "status": true,
-      "color": "rgb(218,232,252)"
-    },
-    {
-      "id": 17,
-      "title": "dfds",
-      "context": "sdfds",
-      "status": true,
-      "color": "rgb(248,206,204)"
-    },
-    {
-      "id": 18,
-      "title": "Gamesssss",
-      "context": "wdfgy  gdjha hsahgsa asjasj ajsahjsh hajabdj bahbsjjabska ajbskjabs",
-      "status": true,
-      "color": "rgb(218,232,252)"
-    },
-    {
-      "id": 20,
-      "title": "My rate to React",
-      "context": "Not bad not great. 3.5 out of 5 xD",
-      "status": false,
-      "color": "rgb(255,242,204)"
-    },
-    {
-      "id": 25,
-      "title": "Nuru",
-      "context": "Salam netersen",
-      "status": true,
-      "color": "rgb(218,232,252)"
-    },
-    {
-      "id": 26,
-      "title": "Nurmehemmed",
-      "context": "Sag ol qaqa sen netersen",
-      "status": true,
-      "color": "rgb(255,242,204)"
-    },
-    {
-      "id": 27,
-      "title": "Answers",
-      "context": "1)a 2)b 3)d",
-      "status": true,
-      "color": "rgb(218,232,252)"
-    },
-    {
-      "id": 28,
-      "title": "Game",
-      "context": "fghj",
-      "status": false,
-      "color": "rgb(218,232,252)"
-    },
-    {
-      "id": 29,
-      "title": "Tired",
-      "context": "dfd",
-      "status": true,
       "color": "rgb(213,232,212)"
     },
     {
-      "id": 30,
-      "title": "Tired",
-      "context": "dfghgfd",
-      "status": true,
-      "color": "rgb(218,232,252)"
+      "id": 11,
+      "title": "AAAA",
+      "context": "AAAAA",
+      "status": false,
+      "color": "rgb(248,206,204)"
     },
     {
-      "id": 31,
-      "title": "Tired",
-      "context": "sdfd",
-      "status": true,
-      "color": "rgb(218,232,252)"
+      "id": 12,
+      "title": "Test",
+      "context": "Test",
+      "status": false,
+      "color": "rgb(213,232,212)"
+    },
+    {
+      "id": 13,
+      "title": "AsSA",
+      "context": "SAASA",
+      "status": false,
+      "color": "rgb(213,232,212)"
+    },
+    {
+      "id": 14,
+      "title": "Nurmehemmed",
+      "context": " Nebiyev",
+      "status": false,
+      "color": "rgb(248,206,204)"
     }
   ]
 }

@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import "./App.scss";
-import {Route} from "react-router-dom";
-import {Switch} from "react-router";
-import {Lines} from 'react-preloaders';
+import { Route } from "react-router-dom";
+import { Switch} from "react-router";
+import {Lines} from 'react-preloaders'
 import SinglePage from "./components/SinglePage/SinglePage";
 import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
 import CreateEdit from "./components/CreateEdit/CreateEdit";
@@ -24,6 +24,7 @@ class App extends Component {
         this.fetchData();
     }
 
+    //Get notes data and assign to state
     fetchData = () => {
         fetch("http://localhost:3001/notes")
             .then(response => response.json())
@@ -39,25 +40,25 @@ class App extends Component {
             });
     };
 
+    //Filter notes that status is false and set to currentNotes (Showed notes)
     filterActual = () => {
         const notesData = [...this.state.notes];
 
-        const actualNotes = notesData.filter(note => {
-            return note.status === false;
-        });
-
         this.setState({
-            currentNotes: actualNotes
+            currentNotes: notesData.filter(note => note.status === false)
         });
     };
 
+    //Filter notes that status is true and set to currentNotes (Showed notes)
     filterArchive = () => {
         const notesData = [...this.state.notes];
+
         this.setState({
             currentNotes: notesData.filter(notes => notes.status === true)
         });
     };
 
+    //Write selected note to localStore
     setSingleNote = note => {
         localStorage.setItem("selectedItem", JSON.stringify(note));
         this.setState({
@@ -65,12 +66,9 @@ class App extends Component {
         });
     };
 
-    //Create post request and update json file (not working)
+    //Create post request and update json file
     onFormSubmit = (e, noteToPost) => {
         e.preventDefault();
-        this.setState({
-            loading: true
-        });
         switch (this.state.action) {
             case "create":
                 fetch("http://localhost:3001/notes", {
@@ -79,8 +77,12 @@ class App extends Component {
                     body: JSON.stringify(noteToPost)
                 })
                     .then(response => response.json())
-                    .then(() => this.fetchData());
-                console.log("create");
+                    .then((data) => {
+                        const newNotes = [...this.state.notes];
+                        newNotes.push(data);
+                        this.setState({notes: newNotes});
+                        this.filterActual();
+                    });
 
                 break;
             case "edit":
@@ -94,20 +96,30 @@ class App extends Component {
                     headers: {"Content-type": "application/json"}
                 })
                     .then(result => result.json())
-                    .then(data => this.fetchData());
+                    .then(() => this.fetchData());
                 break;
             default :
                 return ("there is error in status");
         }
     };
 
-    //Handler for setting action to create (handler for edit button needs to be created like this)
+    //Handler for setting action to create
     createHandler = () => {
         this.setState({action: "create"});
     };
 
+    //Handler for setting action to create
     editHandler = () => {
         this.setState({action: "edit"});
+    };
+
+    //Get darker color of passed color
+    createBorderColor = (color) => {
+        let secondColor = color.slice(4, 15);
+        let arr = secondColor.split(',');
+        arr = arr.map(el => parseInt(el) - 70);
+        secondColor = `rgb(${arr[0]},${arr[1]},${arr[2]})`;
+        return secondColor;
     };
 
     render() {
@@ -126,6 +138,7 @@ class App extends Component {
                             <NoteWrapper
                                 notes={this.state.currentNotes}
                                 setSingleNote={this.setSingleNote}
+                                createBorderColor={this.createBorderColor}
                             />
                         )}
                     />
@@ -149,6 +162,7 @@ class App extends Component {
                                 noteDetails={this.state.selectedNote}
                                 addCurrentNote={this.fetchData}
                                 editHandler={this.editHandler}
+                                createBorderColor={this.createBorderColor}
                             />
                         )}
                     />
