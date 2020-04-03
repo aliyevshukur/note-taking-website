@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./App.scss";
 import { Route } from "react-router-dom";
 import { Switch} from "react-router";
 import SinglePage from "./components/SinglePage/SinglePage";
@@ -17,6 +17,7 @@ class App extends Component {
       selectedNote: JSON.parse(localStorage.getItem("selectedItem")) || {}
     };
   }
+
   componentDidMount() {
     this.fetchData();
   }
@@ -82,14 +83,10 @@ class App extends Component {
             context: noteToPost.context,
             color: noteToPost.color
           }),
-          headers: {
-            "Accept": "application/json",
-            "Content-type": "application/json"
-          }
+          headers: { "Content-type": "application/json" }
         })
           .then(result => result.json())
-          .catch(error => console.log(error))
-          .then(() => this.fetchData());
+          .then(data => this.fetchData());
         break;
       default : return("there is error in status");
     }

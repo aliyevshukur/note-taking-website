@@ -3,13 +3,22 @@ import "./Note.scss";
 import { Link } from "react-router-dom";
 
 const Note = props => {
+
+  const createBorderColor = (color) => {
+    let secondColor = color.slice(4, 15);
+    let arr = secondColor.split(',');
+    arr = arr.map(el => parseInt(el) - 70);
+    secondColor = `rgb(${arr[0]},${arr[1]},${arr[2]})`;
+    return secondColor;
+  };
+
   const noteStyle = {
     backgroundColor: `${props.note.color}`,
-    border: `1px solid ${props.note.color}`
+    border: `1px solid ${createBorderColor(props.note.color)}`
   };
 
   const noteTitleStyle = {
-    borderBottom: `1px solid ${props.note.color}`
+    borderBottom: `1px solid ${createBorderColor(props.note.color)}`
   };
 
   return (
