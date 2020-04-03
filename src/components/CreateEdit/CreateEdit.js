@@ -38,7 +38,7 @@ const CreateEdit = props => {
         }else{
             setBtnDisabled(true);
         }
-    }, [currentNote], selectedColor);
+    }, [currentNote],selectedColor);
 
     const setColor = color => {
         const note = {...currentNote};
