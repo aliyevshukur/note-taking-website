@@ -1,3 +1,5 @@
+@use '../../base.scss';
+
 .Modal {
   &Window {
     width: 500px;
@@ -11,18 +13,28 @@
   }
 
   &CancelButton {
+    @include base.button;
     width: 70%;
-    background: rgb(248, 206, 204);
-    border: 1px solid rgb(248, 149, 121);
-    color: black;
-    padding: 20px 0;
+    //background: rgb(248, 206, 204);
+    //border: 1px solid rgb(248, 149, 121);
+    //color: black;
+    padding: 20px 0
   }
   &YesButton {
+    @include base.button;
     width: 30%;
-    background: rgb(213, 232, 212);
-    border: 1px solid rgb(127, 248, 137);
-    color: black;
+    //background: rgb(213, 232, 212);
+    //border: 1px solid rgb(127, 248, 137);
+    //color: black;
     padding: 20px 0;
+  }
+
+  &CancelButton:hover {
+    @include base.button-hover;
+  }
+
+  &YesButton:hover {
+    @include base.button-hover;
   }
 
   &TitleStyle {
@@ -30,9 +42,9 @@
   }
 
   &TitleContainer {
-    border: 1px black solid;
+    color: #fff;
     border-bottom: none;
     padding: 20px 0;
-    background: #ffffff;
+    background: #000000;
   }
 }
