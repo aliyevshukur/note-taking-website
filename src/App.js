@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.scss";
 import { Route } from "react-router-dom";
 import { Switch} from "react-router";
+import {Lines} from 'react-preloaders'
 import SinglePage from "./components/SinglePage/SinglePage";
 import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
 import CreateEdit from "./components/CreateEdit/CreateEdit";
@@ -14,7 +15,8 @@ class App extends Component {
       notes: JSON.parse(localStorage.getItem('notes')) || [],
       currentNotes: [],
       action: "",
-      selectedNote: JSON.parse(localStorage.getItem("selectedItem")) || {}
+      selectedNote: JSON.parse(localStorage.getItem("selectedItem")) || {},
+      loading: true
     };
   }
 
@@ -27,6 +29,9 @@ class App extends Component {
       .then(response => response.json())
       .then(result => {
         localStorage.setItem('notes',JSON.stringify(result));
+        this.setState({
+          loading: false
+        });
         this.setState({
           notes: result
         });
@@ -103,7 +108,7 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <Header
           filterActual={this.filterActual}
           filterArchive={this.filterArchive}
@@ -144,7 +149,8 @@ class App extends Component {
             )}
           />
         </Switch>
-      </>
+        <Lines customLoading={this.state.loading}/>
+      </React.Fragment>
     );
   }
 }
