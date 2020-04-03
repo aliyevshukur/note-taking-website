@@ -11,5 +11,4 @@ const NoteWrapper = props => {
     </div>
   );
 };
-
 export default NoteWrapper;

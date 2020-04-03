@@ -3,15 +3,23 @@
   flex-direction: column;
   text-align: center;
   width: 350px;
+  min-height: 250px;
   margin: 30px;
-  text-decoration: none;
+  box-shadow: 5px 5px 5px 0 #000000;
   color: #000000;
   outline: none;
-  box-shadow: 5px 5px 5px 0px #000000;
+  text-decoration: none;
 
   .note-title {
+    font-size: 3vw;
     text-align: center;
     margin: 0;
     padding: 10px;
   }
+
+  .context{
+    font-size: 1vw;
+  }
+
 }
+
