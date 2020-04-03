@@ -50,7 +50,7 @@ const CreateEdit = props => {
     };
 
     const isActive = name => {
-        return name === selectedColor ? {border: "3px solid #1F78A7", margin:"7px"} : {};
+        return name === selectedColor ? {border: "4px solid #0A84FF", margin:"6px"} : {};
     };
 
     const formSubmitHandler = e => {
