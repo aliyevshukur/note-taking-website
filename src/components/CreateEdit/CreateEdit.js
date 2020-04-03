@@ -31,15 +31,15 @@ const CreateEdit = props => {
         setCurrentNote(note);
     };
 
-    useEffect( () => {
-        console.log(currentNote);
-        if (currentNote.title && currentNote.context && selectedColor){
+    useEffect(() => {
+        if (currentNote.title && currentNote.context && selectedColor) {
             setBtnDisabled(false);
-        }else{
+        } else {
             setBtnDisabled(true);
         }
     }, [currentNote, selectedColor]);
 
+    //Set note color
     const setColor = color => {
         const note = {...currentNote};
 
@@ -49,10 +49,12 @@ const CreateEdit = props => {
         setSelectedColor(color);
     };
 
+    //Return border color if button is active
     const isActive = name => {
-        return name === selectedColor ? {border: "4px solid #0A84FF", margin:"6px"} : {};
+        return name === selectedColor ? {border: "4px solid #0A84FF", margin: "6px"} : {};
     };
 
+    //Trigger parents form handler and redirect to home page
     const formSubmitHandler = e => {
         props.onFormSubmit(e, currentNote);
         history.push("/");
@@ -119,7 +121,7 @@ const CreateEdit = props => {
                 <input
                     disabled={btnDisabled}
                     type='submit'
-                    value={props.action ? "SAVE" : "CREATE"}
+                    value={props.action === 'edit' ? "SAVE" : "CREATE"}
                     className={'create-edit-button'}
                 />
             </form>

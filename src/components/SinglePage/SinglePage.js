@@ -5,21 +5,13 @@ import Modal from "../Modal/Modal";
 
 const SinglePage = props => {
 
-  const createBorderColor = (color) => {
-    let secondColor = color.slice(4, 15);
-    let arr = secondColor.split(',');
-    arr = arr.map(el => parseInt(el) - 70);
-    secondColor = `rgb(${arr[0]},${arr[1]},${arr[2]})`;
-    return secondColor;
-  };
-
   const noteStyle = {
     backgroundColor: `${props.noteDetails.color}`,
-    border: `1.5px solid ${createBorderColor(props.noteDetails.color)}`
+    border: `1.5px solid ${props.createBorderColor(props.noteDetails.color)}`
   };
 
   const noteTitleStyle = {
-     borderBottom : `1.5px solid ${createBorderColor(props.noteDetails.color)}`
+     borderBottom : `1.5px solid ${props.createBorderColor(props.noteDetails.color)}`
   };
 
   const history = useHistory(),
@@ -30,7 +22,6 @@ const SinglePage = props => {
     history.replace("/create-edit");
     props.editHandler();
   };
-  console.log(props.noteDetails);
   //request server for update status of note
   const archiveButtonHandler = () => {
     fetch("http://localhost:3001/notes/" + props.noteDetails.id, {
@@ -67,6 +58,7 @@ const SinglePage = props => {
     setModalActive(false);
   };
 
+  //Hide modal window on cancel
   const cancelButtonHandler = () => {
     setModalActive(false);
   };
