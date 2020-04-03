@@ -32,7 +32,7 @@ class App extends Component {
         });
         this.filterActual();
       });
-  }
+  };
 
   filterActual = () => {
     const notesData = [...this.state.notes];

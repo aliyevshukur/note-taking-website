@@ -1,5 +1,5 @@
 html,body,#root{
-  height: 100%;
-  background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url("./img/bg.jpg") no-repeat ;
+  min-height: 100%;
+  background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url("./img/bg.jpg") no-repeat;
   background-size: cover;
 }

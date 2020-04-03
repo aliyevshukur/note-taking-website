@@ -88,29 +88,29 @@ const CreateEdit = props => {
 
                     <div
                         className={"button-green"}
-                        style={isActive("rgb(213, 232, 212)")}
-                        onClick={() => setColor("rgb(213, 232, 212)")}
+                        style={isActive("rgb(213,232,212)")}
+                        onClick={() => setColor("rgb(213,232,212)")}
                     >
                     </div>
 
                     <div
                         className={"button-blue"}
-                        style={isActive("rgb(218, 232, 252)")}
-                        onClick={() => setColor("rgb(218, 232, 252)")}
+                        style={isActive("rgb(218,232,252)")}
+                        onClick={() => setColor("rgb(218,232,252)")}
                     >
                     </div>
 
                     <div
                         className={"button-yellow"}
-                        style={isActive("rgb(255, 242, 204)")}
-                        onClick={() => setColor("rgb(255, 242, 204)")}
+                        style={isActive("rgb(255,242,204)")}
+                        onClick={() => setColor("rgb(255,242,204)")}
                     >
                     </div>
 
                     <div
                         className={"button-red"}
-                        style={isActive("rgb(248, 206, 204)")}
-                        onClick={() => setColor("rgb(248, 206, 204)")}
+                        style={isActive("rgb(248,206,204)")}
+                        onClick={() => setColor("rgb(248,206,204)")}
                     >
                     </div>
 
@@ -119,7 +119,7 @@ const CreateEdit = props => {
                 <input
                     disabled={btnDisabled}
                     type='submit'
-                    value={props.action ? props.action.toUpperCase() : "CREATE"}
+                    value={props.action ? "SAVE" : "CREATE"}
                     className={'create-edit-button'}
                 />
             </form>

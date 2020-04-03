@@ -5,35 +5,28 @@
       "title": "Do StepProject",
       "context": "Do StepProject that Nick uploaded today",
       "status": true,
-      "color": "rgb(255, 242, 204)"
+      "color": "rgb(255,242,204)"
     },
     {
       "id": 2,
       "title": "Do Sport",
       "context": "Dont forget to do sport for today",
       "status": true,
-      "color": "rgb(248, 206, 204)"
-    },
-    {
-      "id": 3,
-      "title": "Do Homework",
-      "context": "Do Homework which Alina teacher gave for holiday",
-      "status": true,
-      "color": "rgba(218, 232, 252)"
+      "color": "rgb(248,206,204)"
     },
     {
       "id": 4,
       "title": "Driving course",
       "context": "Go to driving course tomorrow",
       "status": true,
-      "color": "rgb(248, 206, 204)"
+      "color": "rgb(248,206,204)"
     },
     {
       "id": 5,
       "title": "Chat with girlfriend",
       "context": "Your girlfriend will wait at 10 o-clock in whatsapp",
       "status": true,
-      "color": "rgb(213, 232, 212)"
+      "color": "rgb(213,232,212)"
     },
     {
       "id": 6,
@@ -47,7 +40,14 @@
       "title": "Meet sdf sdf sd",
       "context": "Meet with friends at park",
       "status": true,
-      "color": "rgb(218, 232, 252)"
+      "color": "rgb(255,242,204)"
+    },
+    {
+      "id": 25,
+      "title": "Game",
+      "context": "gfggfgfgfgf",
+      "status": true,
+      "color": "rgb(255,242,204)"
     },
     {
       "id": 8,
@@ -64,14 +64,11 @@
       "color": "rgb(255, 242, 204)"
     },
     {
-      "id": 10
-    },
-    {
       "id": 12,
       "title": "S.A NURU",
-      "context": "Burda mətin çox olanda pox gününə qalır. Gör neyniyirsən :d",
+      "context": "Narahat olma qaqa pox olan her seyi gule dondereciyik))",
       "status": false,
-      "color": "rgb(248, 206, 204)"
+      "color": "rgb(218, 232, 252)"
     },
     {
       "id": 13,
@@ -82,10 +79,31 @@
     },
     {
       "id": 14,
+      "title": "Cox metin",
+      "context": "Cox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metin",
+      "status": false,
+      "color": "rgb(255, 242, 204)"
+    },
+    {
+      "id": 15,
       "title": "fgfg",
       "context": "fgdg",
-      "status": false,
+      "status": true,
       "color": "rgb(213, 232, 212)"
+    },
+    {
+      "id": 16,
+      "title": "fges",
+      "context": "sdfs",
+      "status": true,
+      "color": "rgb(218,232,252)"
+    },
+    {
+      "id": 17,
+      "title": "dfds",
+      "context": "sdfds",
+      "status": true,
+      "color": "rgb(248,206,204)"
     }
   ]
 }
