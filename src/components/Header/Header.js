@@ -21,7 +21,6 @@ const Header = props => {
           <Link to={"/"} className="button" onClick={props.filterActual}>
             Actual
           </Link>
-
           <Link to={"/"} className="button" onClick={props.filterArchive}>
             Archive
           </Link>

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./App.scss";
-import {Route} from "react-router-dom";
-import {Switch} from "react-router";
+import { Route } from "react-router-dom";
+import { Switch} from "react-router";
 import {Lines} from 'react-preloaders'
 import SinglePage from "./components/SinglePage/SinglePage";
 import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
