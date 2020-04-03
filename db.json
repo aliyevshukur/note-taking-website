@@ -36,6 +36,13 @@
       "color": "rgb(255,242,204)"
     },
     {
+      "id": 3,
+      "title": "Game",
+      "context": "gfggfgfgfgf",
+      "status": true,
+      "color": "rgb(255,242,204)"
+    },
+    {
       "id": 8,
       "title": "Call Mom",
       "context": "Call mom at night :)",
@@ -50,74 +57,39 @@
       "color": "rgb(255, 242, 204)"
     },
     {
-      "id": 12,
-      "title": "S.A NURU",
-      "context": "Narahat olma qaqa pox olan her seyi gule dondereciyik))",
+      "id": 10,
+      "title": "AAAA",
+      "context": "AAAAA",
       "status": false,
-      "color": "rgb(218, 232, 252)"
+      "color": "rgb(213,232,212)"
     },
     {
-      "id": 13,
-      "title": "Enough for today",
-      "context": "I am going to get some sleep. I am sooo tired",
+      "id": 11,
+      "title": "AAAA",
+      "context": "AAAAA",
       "status": false,
-      "color": "rgb(255, 242, 204)"
-    },
-    {
-      "id": 14,
-      "title": "Cox metin",
-      "context": "Cox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metin",
-      "status": false,
-      "color": "rgb(255, 242, 204)"
-    },
-    {
-      "id": 15,
-      "title": "fgfg",
-      "context": "fgdg",
-      "status": true,
-      "color": "rgb(213, 232, 212)"
-    },
-    {
-      "id": 16,
-      "title": "fges",
-      "context": "sdfs",
-      "status": true,
-      "color": "rgb(218,232,252)"
-    },
-    {
-      "id": 17,
-      "title": "dfds",
-      "context": "sdfds",
-      "status": true,
       "color": "rgb(248,206,204)"
     },
     {
-      "id": 18,
-      "title": "Game",
-      "context": "sdasdsad",
+      "id": 12,
+      "title": "Test",
+      "context": "Test",
       "status": false,
       "color": "rgb(213,232,212)"
     },
     {
-      "id": 19,
-      "title": "Tired",
-      "context": "sdfds",
-      "status": true,
+      "id": 13,
+      "title": "AsSA",
+      "context": "SAASA",
+      "status": false,
       "color": "rgb(213,232,212)"
     },
     {
-      "id": 20,
-      "title": "My rate to React",
-      "context": "Not bad not great. 3.5 out of 5 xD",
+      "id": 14,
+      "title": "Nurmehemmed",
+      "context": " Nebiyev",
       "status": false,
-      "color": "rgb(255,242,204)"
-    },
-    {
-      "id": 25,
-      "title": "fgdfgf",
-      "context": "dfgdfgf",
-      "status": false,
-      "color": "rgb(218,232,252)"
+      "color": "rgb(248,206,204)"
     }
   ]
 }

@@ -1,28 +1,24 @@
 import React from "react";
 import "./Note.scss";
 import { Link } from "react-router-dom";
+import pinImage from "../../img/pin_PNG100.png";
 
 const Note = props => {
 
-  const darkerColor = (color) => {
-    let secondColor = color.slice(4, 15);
-    let arr = secondColor.split(',');
-    arr = arr.map(el => parseInt(el) - 70);
-    secondColor = `rgb(${arr[0]},${arr[1]},${arr[2]})`;
-    return secondColor;
-  };
 
+
+  // Truncate text length to maxLength
   const truncated = (context, maxLength) => {
     return maxLength > context.length ? context : context.substr(0, maxLength) + '...';
   };
 
   const noteStyle = {
     backgroundColor: `${props.note.color}`,
-    border: `1px solid ${darkerColor(props.note.color)}`
+    border: `2px solid ${props.createBorderColor(props.note.color)}`
   };
 
   const noteTitleStyle = {
-    borderBottom: `1px solid ${darkerColor(props.note.color)}`
+    borderBottom: `2px solid ${props.createBorderColor(props.note.color)}`
   };
 
   return (
@@ -32,7 +28,7 @@ const Note = props => {
       style={noteStyle}
       className={"note"}
     >
-      <img src={require("../../img/pin_PNG100.png")} alt={"pin_img"} height={"47px"} width={"50px"} style={{"margin":"0px auto"}}/>
+      <img src={pinImage} alt={"pin_img"} height={"47px"} width={"50px"} style={{"margin":"0px auto"}}/>
       <h1 style={noteTitleStyle} className={"note-title"}>
         {props.note.title}
       </h1>
