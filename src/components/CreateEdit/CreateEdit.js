@@ -4,12 +4,12 @@ import "./CreateEdit.scss";
 
 const CreateEdit = props => {
     const history = useHistory();
-    let defaultNotes;
+    let defaultNote;
 
     if (props.action === "edit") {
-        defaultNotes = props.selectedNote;
+        defaultNote = props.selectedNote;
     } else {
-        defaultNotes = {
+        defaultNote = {
             id: props.lastId + 1,
             title: "",
             context: "",
@@ -18,8 +18,8 @@ const CreateEdit = props => {
         };
     }
 
-    const [currentNote, setCurrentNote] = useState(defaultNotes);
-    const [selectedColor, setSelectedColor] = useState("");
+    const [currentNote, setCurrentNote] = useState(defaultNote);
+    const [selectedColor, setSelectedColor] = useState(defaultNote.color);
     const [btnDisabled, setBtnDisabled] = useState(true);
 
     //save input values
@@ -38,7 +38,7 @@ const CreateEdit = props => {
         }else{
             setBtnDisabled(true);
         }
-    }, [currentNote],selectedColor);
+    }, [currentNote, selectedColor]);
 
     const setColor = color => {
         const note = {...currentNote};
@@ -50,7 +50,7 @@ const CreateEdit = props => {
     };
 
     const isActive = name => {
-        return name === selectedColor ? {border: "3px solid cornflowerblue", width: "44px", height: "44px"} : {};
+        return name === selectedColor ? {border: "3px solid #1F78A7", margin:"7px"} : {};
     };
 
     const formSubmitHandler = e => {
@@ -59,69 +59,71 @@ const CreateEdit = props => {
     };
 
     return (
-        <form
-            className={"create-edit-form"}
-            onSubmit={formSubmitHandler}
-            onChange={onFormChange}
-        >
-            <h1 className={"form-title"}>Fill data</h1>
+        <div className="form-wrapper">
+            <form
+                className={"create-edit-form"}
+                onSubmit={formSubmitHandler}
+                onChange={onFormChange}
+            >
+                <h1 className={"form-title"}>Fill data</h1>
 
-            <input
-                name='title'
-                type='text'
-                defaultValue={currentNote.title}
-                className={"title"}
-            />
+                <input
+                    name='title'
+                    type='text'
+                    defaultValue={currentNote.title}
+                    className={"title"}
+                />
 
-            <textarea
-                name='context'
-                id='1'
-                cols='30'
-                rows='10'
-                defaultValue={currentNote.context}
-                className={"context"}
-            />
+                <textarea
+                    name='context'
+                    id='1'
+                    cols='30'
+                    rows='10'
+                    defaultValue={currentNote.context}
+                    className={"context"}
+                />
 
-            <div className='color-buttons'>
-                <p>Color:</p>
+                <div className='color-buttons'>
+                    <p>Color:</p>
 
-                <div
-                    className={"button-green"}
-                    style={isActive("rgb(213, 232, 212)")}
-                    onClick={() => setColor("rgb(213, 232, 212)")}
-                >
+                    <div
+                        className={"button-green"}
+                        style={isActive("rgb(213,232,212)")}
+                        onClick={() => setColor("rgb(213,232,212)")}
+                    >
+                    </div>
+
+                    <div
+                        className={"button-blue"}
+                        style={isActive("rgb(218,232,252)")}
+                        onClick={() => setColor("rgb(218,232,252)")}
+                    >
+                    </div>
+
+                    <div
+                        className={"button-yellow"}
+                        style={isActive("rgb(255,242,204)")}
+                        onClick={() => setColor("rgb(255,242,204)")}
+                    >
+                    </div>
+
+                    <div
+                        className={"button-red"}
+                        style={isActive("rgb(248,206,204)")}
+                        onClick={() => setColor("rgb(248,206,204)")}
+                    >
+                    </div>
+
                 </div>
 
-                <div
-                    className={"button-blue"}
-                    style={isActive("rgb(218, 232, 252)")}
-                    onClick={() => setColor("rgb(218, 232, 252)")}
-                >
-                </div>
-
-                <div
-                    className={"button-yellow"}
-                    style={isActive("rgb(255, 242, 204)")}
-                    onClick={() => setColor("rgb(255, 242, 204)")}
-                >
-                </div>
-
-                <div
-                    className={"button-red"}
-                    style={isActive("rgb(248, 206, 204)")}
-                    onClick={() => setColor("rgb(248, 206, 204)")}
-                >
-                </div>
-
-            </div>
-
-            <input
-                disabled={btnDisabled}
-                type='submit'
-                value={props.action ? props.action.toUpperCase() : "CREATE"}
-                className={'create-edit-button'}
-            />
-        </form>
+                <input
+                    disabled={btnDisabled}
+                    type='submit'
+                    value={props.action ? "SAVE" : "CREATE"}
+                    className={'create-edit-button'}
+                />
+            </form>
+        </div>
     );
 };
 export default CreateEdit;

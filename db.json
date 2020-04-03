@@ -31,21 +31,14 @@
     {
       "id": 6,
       "title": "Go Running",
-      "context": "Dont forget to run 15 minutes today",
-      "status": true,
-      "color": "rgb(255,242,204)"
+      "context": "Dont forget to run 15 minutes today dsf sd",
+      "status": false,
+      "color": "rgb(213, 232, 212)"
     },
     {
-      "id": 22,
-      "title": "My lovely note to Nurmahammad",
-      "context": "Hello, dear Nurmahammad. I hope you are doing well and i hope coding isn't stressful for you. Take care of yourself. Bye... ",
-      "status": true,
-      "color": "rgb(255,242,204)"
-    },
-    {
-      "id": 23,
-      "title": "Game",
-      "context": "Have match with friends at 9 oclock",
+      "id": 7,
+      "title": "Meet sdf sdf sd",
+      "context": "Meet with friends at park",
       "status": true,
       "color": "rgb(255,242,204)"
     },
@@ -55,6 +48,20 @@
       "context": "gfggfgfgfgf",
       "status": true,
       "color": "rgb(255,242,204)"
+    },
+    {
+      "id": 8,
+      "title": "Call Mom",
+      "context": "Call mom at night",
+      "status": false,
+      "color": "rgb(213, 232, 212)"
+    },
+    {
+      "id": 9,
+      "title": "Reports",
+      "context": "Make reports for conference",
+      "status": false,
+      "color": "rgb(255, 242, 204)"
     },
     {
       "id": 12,
@@ -76,6 +83,27 @@
       "context": "Cox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metinCox metin Cox metin",
       "status": false,
       "color": "rgb(255, 242, 204)"
+    },
+    {
+      "id": 15,
+      "title": "fgfg",
+      "context": "fgdg",
+      "status": true,
+      "color": "rgb(213, 232, 212)"
+    },
+    {
+      "id": 16,
+      "title": "fges",
+      "context": "sdfs",
+      "status": true,
+      "color": "rgb(218,232,252)"
+    },
+    {
+      "id": 17,
+      "title": "dfds",
+      "context": "sdfds",
+      "status": true,
+      "color": "rgb(248,206,204)"
     }
   ]
 }
