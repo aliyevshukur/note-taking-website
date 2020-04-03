@@ -1,13 +1,10 @@
 .note-wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px 190px;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-wrap: wrap;
-  &::after {
-    content: "";
-    width: calc(100% / 4);
-    margin: 30px;
-  }
+  max-width: 90%;
+  padding: 40px 0;
+  margin: 0 auto;
 }
 

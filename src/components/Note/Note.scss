@@ -1,17 +1,37 @@
+@use '../../base.scss';
+
 .note {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  width: calc(100% / 4) ;
+  width: calc(100% / 3 - 62px) ;
+  height: 260px;
   margin: 30px;
+  text-align: center;
+  font-family: Arial, sans-serif;
   text-decoration: none;
   color: #000000;
   outline: none;
-  box-shadow: 5px 5px 5px 0px #000000;
+  box-shadow: 5px 5px 5px 0 #000000;
 
   .note-title {
     text-align: center;
     margin: 0;
-    padding: 10px;
+    font-size: 1.5em;
+    //padding: 0 10px 10px 10px;
   }
+
+  .context{
+    padding: 10px;
+    margin: 0;
+  }
+
+  @media screen and (max-width: base.$break-large){
+    width: calc(100% / 2 - 62px)
+  }
+
+  @media screen and (max-width: base.$break-small){
+    width: 100%;
+  }
+
+
 }

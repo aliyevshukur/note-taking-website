@@ -12,6 +12,10 @@ const Note = props => {
     return secondColor;
   };
 
+  const truncated = (context, maxLength) => {
+    return maxLength > context.length ? context : context.substr(0, maxLength) + '...';
+  };
+
   const noteStyle = {
     backgroundColor: `${props.note.color}`,
     border: `1px solid ${createBorderColor(props.note.color)}`
@@ -32,7 +36,7 @@ const Note = props => {
       <h1 style={noteTitleStyle} className={"note-title"}>
         {props.note.title}
       </h1>
-      <p className="context">{props.note.context}</p>
+      <p className="context">{truncated(props.note.context, 200)}</p>
     </Link>
   );
 };
