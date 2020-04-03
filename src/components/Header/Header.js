@@ -1,14 +1,16 @@
 import React from "react";
 import "./Header.scss";
 import { Link } from "react-router-dom";
+import noteImage from '../../img/SiteLogo.png'
 
 const Header = props => {
-  return (
+
+    return (
     <header className={"header"}>
 
 
         <Link to={'/'} className="note-logo">
-          <img src={require("../../img/SiteLogo.png")} alt="logo" />
+          <img src={noteImage} alt="logo" />
           <h1 className={"header-title"}>
             Notes<span className={"header-title-part"}>App</span>
           </h1>

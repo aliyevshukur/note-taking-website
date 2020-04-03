@@ -27,7 +27,7 @@ $border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 87vh;
+  height: 86vh;
 
   .create-edit-form {
     display: flex;
@@ -92,6 +92,10 @@ $border-radius: 10px;
     }
     .create-edit-button:hover {
       @include base.button-hover;
+    }
+    .create-edit-button:disabled {
+      background: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5));
+      cursor: default;
     }
   }
 }
