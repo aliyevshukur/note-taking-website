@@ -68,6 +68,9 @@ class App extends Component {
   //Create post request and update json file (not working)
   onFormSubmit = (e, noteToPost) => {
     e.preventDefault();
+    this.setState({
+      loading:true
+    });
     switch(this.state.action) {
       case "create":
         fetch("http://localhost:3001/notes", {
