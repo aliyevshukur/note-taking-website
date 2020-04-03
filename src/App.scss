@@ -1,5 +1,11 @@
-html,body,#root{
+html{
   min-height: 100%;
-  background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url("./img/bg.jpg") no-repeat;
+  min-width: 1024px;
+  background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url("./img/bg.jpg") no-repeat center center fixed;
   background-size: cover;
+}
+
+body{
+  margin: 0;
+  padding: 0;
 }
