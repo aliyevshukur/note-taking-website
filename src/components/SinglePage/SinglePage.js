@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import "./SinglePage.scss";
 import Modal from "../Modal/Modal";
-import pinImage from '../../img/pin_PNG100.png';
+import pinImage from "../../img/pin_PNG100.png";
 
-const SinglePage = props => {
-
+const SinglePage = (props) => {
   const noteStyle = {
     backgroundColor: `${props.noteDetails.color}`,
-    border: `1.5px solid ${props.createBorderColor(props.noteDetails.color)}`
+    border: `1.5px solid ${props.createBorderColor(props.noteDetails.color)}`,
   };
 
   const noteTitleStyle = {
-     borderBottom : `1.5px solid ${props.createBorderColor(props.noteDetails.color)}`
+    borderBottom: `1.5px solid ${props.createBorderColor(
+      props.noteDetails.color
+    )}`,
   };
 
   const history = useHistory(),
@@ -25,19 +26,23 @@ const SinglePage = props => {
   };
   //request server for update status of note
   const archiveButtonHandler = () => {
-    fetch("http://localhost:3001/notes/" + props.noteDetails.id, {
-      method: "PATCH",
-      body: JSON.stringify({
-        status: true
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
+    fetch(
+      "https://fake-server-app-note.herokuapp.com/notes/" +
+        props.noteDetails.id,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          status: true,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
       }
-    })
-      .then(response => response.json())
-      .then(result => {
+    )
+      .then((response) => response.json())
+      .then((result) => {
         props.addCurrentNote();
-        history.push('/');
+        history.push("/");
       });
   };
 
@@ -48,13 +53,17 @@ const SinglePage = props => {
 
   // Modal window Yes Handler
   const yesButtonHandler = () => {
-    fetch("http://localhost:3001/notes/" + props.noteDetails.id, {
-      method: "DELETE"
-    })
-      .then(res => res.text()) // or res.json()
+    fetch(
+      "https://fake-server-app-note.herokuapp.com/notes/" +
+        props.noteDetails.id,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((res) => res.text()) // or res.json()
       .then(() => {
         props.addCurrentNote();
-        history.push('/');
+        history.push("/");
       });
     setModalActive(false);
   };
@@ -68,13 +77,17 @@ const SinglePage = props => {
     <div className="notesContainer">
       <div className="notes" style={noteStyle}>
         <div style={noteTitleStyle}>
-          <img src={pinImage} alt={"pin_img"} height={"67px"} width={"70px"} style={{"margin":"0px auto"}}/>
-        <h1 className="notes-title">
-          {props.noteDetails.title}
-        </h1>
+          <img
+            src={pinImage}
+            alt={"pin_img"}
+            height={"67px"}
+            width={"70px"}
+            style={{ margin: "0px auto" }}
+          />
+          <h1 className="notes-title">{props.noteDetails.title}</h1>
         </div>
         <div className="singleContext">
-        <span>{props.noteDetails.context}</span>
+          <span>{props.noteDetails.context}</span>
         </div>
       </div>
 
