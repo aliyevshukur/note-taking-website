@@ -1,37 +1,55 @@
-@use '../../base.scss';
+@use "../../base.scss";
 
 .note {
   display: flex;
   flex-direction: column;
-  width: calc(100% / 3 - 64px) ;
-  height: 260px;
+  width: 271px;
+  height: 287px;
+  position: relative;
+
+  color: #000000;
+  border: 4px solid #33322e;
+  border-radius: 24px;
+  box-shadow: 12px 12px 0px 0 #33322e;
+  outline: none;
+
   margin: 30px;
+
   text-align: center;
   font-family: Arial, sans-serif;
   text-decoration: none;
-  color: #000000;
-  outline: none;
-  box-shadow: 5px 5px 5px 0 #000000;
+  cursor: pointer;
 
   .note-title {
-    text-align: center;
     margin: 0;
-    font-size: 1.5em;
+    font-size: 30px;
+    font-family: "Roboto", sans-serif;
+    text-align: left;
+    border-bottom: 4px solid #33322e;
+    padding: 16px 0px 10px 25px;
+    overflow: hidden;
   }
 
-  .context{
-    padding: 10px;
+  .context {
+    padding: 14px 24px;
     margin: 0;
-    height: 220px;
+    height: 100%;
+    text-align: left;
   }
 
-  @media screen and (max-width: base.$break-large){
-    width: calc(100% / 2 - 62px)
+  &-pin-img {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 
-  @media screen and (max-width: base.$break-small){
+  @media screen and (max-width: base.$break-large) {
+    width: calc(100% / 2 - 62px);
+  }
+
+  @media screen and (max-width: base.$break-small) {
     width: 100%;
   }
-
-
 }

@@ -3,8 +3,12 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  max-width: 90%;
+  max-width: 87%;
   padding: 40px 0;
   margin: 0 auto;
-}
 
+  .no-notes {
+    margin: 50px 0px 0px 50px;
+    font-size: 26px;
+  }
+}

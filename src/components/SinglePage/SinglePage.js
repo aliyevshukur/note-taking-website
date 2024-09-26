@@ -1,19 +1,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import "./SinglePage.scss";
-import Modal from "../Modal/Modal";
 import pinImage from "../../img/pin_PNG100.png";
+import Modal from "../Modal/Modal";
+import "./SinglePage.scss";
 
 const SinglePage = (props) => {
   const noteStyle = {
-    backgroundColor: `${props.noteDetails.color}`,
-    border: `1.5px solid ${props.createBorderColor(props.noteDetails.color)}`,
-  };
-
-  const noteTitleStyle = {
-    borderBottom: `1.5px solid ${props.createBorderColor(
-      props.noteDetails.color
-    )}`,
+    backgroundColor: `${props.note.color}`,
   };
 
   const history = useHistory(),
@@ -27,22 +20,22 @@ const SinglePage = (props) => {
   //request server for update status of note
   const archiveButtonHandler = () => {
     fetch(
-      "https://fake-server-app-note.herokuapp.com/notes/" +
-        props.noteDetails.id,
+      `https://note-taking-website-server.vercel.app/notes/${props.note._id}`,
       {
-        method: "PATCH",
+        method: "PUT",
         body: JSON.stringify({
-          status: true,
+          ...props.note,
+          isArchived: true,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
-      }
+      },
     )
       .then((response) => response.json())
       .then((result) => {
         props.addCurrentNote();
-        history.push("/");
+        history.goBack();
       });
   };
 
@@ -52,18 +45,21 @@ const SinglePage = (props) => {
   };
 
   // Modal window Yes Handler
-  const yesButtonHandler = () => {
+  const deleteSingleNote = () => {
+    console.log(`ID: ${props.note._id}`);
     fetch(
-      "https://fake-server-app-note.herokuapp.com/notes/" +
-        props.noteDetails.id,
+      `https://note-taking-website-server.vercel.app/notes/${props.note._id}`,
       {
         method: "DELETE",
-      }
+      },
     )
       .then((res) => res.text()) // or res.json()
       .then(() => {
         props.addCurrentNote();
-        history.push("/");
+        history.goBack();
+      })
+      .catch((err) => {
+        console.log(`Error deleteing note: ${err}`);
       });
     setModalActive(false);
   };
@@ -74,37 +70,37 @@ const SinglePage = (props) => {
   };
 
   return (
-    <div className="notesContainer">
-      <div className="notes" style={noteStyle}>
-        <div style={noteTitleStyle}>
-          <img
+    <div className='notesContainer'>
+      <div className='notes' style={noteStyle}>
+        <div>
+          {/* <img
             src={pinImage}
             alt={"pin_img"}
             height={"67px"}
             width={"70px"}
             style={{ margin: "0px auto" }}
-          />
-          <h1 className="notes-title">{props.noteDetails.title}</h1>
+          /> */}
+          <h1 className='notes-title'>{props.note.title}</h1>
         </div>
-        <div className="singleContext">
-          <span>{props.noteDetails.context}</span>
+        <div className='singleContext'>
+          <span>{props.note.context} </span>
         </div>
       </div>
 
-      <div className="notesButtons">
-        <button className="buttonDesign" onClick={editButtonHandler}>
+      <div className='notesButtons'>
+        <button className='buttonDesign' onClick={editButtonHandler}>
           Edit
         </button>
-        <button className="buttonDesign" onClick={archiveButtonHandler}>
+        <button className='buttonDesign' onClick={archiveButtonHandler}>
           Archive
         </button>
-        <button className="buttonDesign" onClick={deleteButtonHandler}>
+        <button className='buttonDesign' onClick={deleteButtonHandler}>
           Delete
         </button>
       </div>
       {modalActive ? (
         <Modal
-          yesHandler={yesButtonHandler}
+          yesHandler={deleteSingleNote}
           cancelHandler={cancelButtonHandler}
         />
       ) : null}

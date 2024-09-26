@@ -1,18 +1,17 @@
-@use '../../base';
+@import "../../base";
 $border-radius: 10px;
 
-@mixin button {
+@mixin colorButtonStyle {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  outline: none;
-  border: none;
   cursor: pointer;
+  border: none;
+  border-radius: 50%;
   margin: 10px;
 }
 
 @mixin inputStyle {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+  background: linear-gradient(rgba(70, 70, 70, 0.6), rgba(77, 77, 77, 0.6));
   color: #fff;
   width: 600px;
   border: none;
@@ -36,16 +35,20 @@ $border-radius: 10px;
     justify-content: center;
     width: 700px;
     border-radius: $border-radius;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+    background: linear-gradient(
+      rgba(152, 152, 152, 0.6),
+      rgba(95, 95, 95, 0.6)
+    );
 
     .form-title {
       color: #fff;
+      font-size: 20px;
+      margin-top: 10px;
     }
 
     .title {
       @include inputStyle();
       font-size: 22px;
-
     }
 
     .context {
@@ -54,7 +57,7 @@ $border-radius: 10px;
     }
 
     .color-buttons {
-      background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6));
+      background: linear-gradient(rgba(70, 70, 70, 0.6), rgba(77, 77, 77, 0.6));
       color: #fff;
       display: flex;
       align-items: center;
@@ -62,24 +65,19 @@ $border-radius: 10px;
       padding: 10px 70px;
       border-radius: $border-radius;
 
-      .button-green {
-        @include button;
-        background-color: #d5e8d4;
+      .button-peach {
+        @include colorButtonStyle;
+        background-color: $peach;
       }
 
-      .button-blue {
-        @include button;
-        background-color: #dae8fc;
+      .button-aqua {
+        @include colorButtonStyle;
+        background-color: $aqua;
       }
 
       .button-yellow {
-        @include button;
-        background-color: #fff2cc;
-      }
-
-      .button-red {
-        @include button;
-        background-color: #f8cecc;
+        @include colorButtonStyle;
+        background-color: $yellow;
       }
 
       .button-green:focus {
@@ -88,14 +86,20 @@ $border-radius: 10px;
     }
 
     .create-edit-button {
-      @include base.button();
-    }
-    .create-edit-button:hover {
-      @include base.button-hover;
-    }
-    .create-edit-button:disabled {
-      background: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5));
-      cursor: default;
+      @include button;
+      padding: 10px 20px;
+
+      &:hover {
+        @include button-hover;
+      }
+
+      &:disabled {
+        background: linear-gradient(
+          rgba(255, 255, 255, 0.5),
+          rgba(255, 255, 255, 0.5)
+        );
+        cursor: not-allowed;
+      }
     }
   }
 }

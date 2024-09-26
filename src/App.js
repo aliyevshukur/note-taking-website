@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import "./App.scss";
-import { Route } from "react-router-dom";
-import { Switch } from "react-router";
 import { Lines } from "react-preloaders";
-import SinglePage from "./components/SinglePage/SinglePage";
-import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
+import { Switch } from "react-router";
+import { Route } from "react-router-dom";
+import "./App.scss";
 import CreateEdit from "./components/CreateEdit/CreateEdit";
 import Header from "./components/Header/Header";
+import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
+import SinglePage from "./components/SinglePage/SinglePage";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: JSON.parse(localStorage.getItem("notes")) || [],
-      currentNotes: [],
+      allNotes: JSON.parse(localStorage.getItem("notes")) || [],
+      renderedNotes: [],
       action: "",
       selectedNote: JSON.parse(localStorage.getItem("selectedItem")) || {},
       loading: true,
@@ -26,35 +26,36 @@ class App extends Component {
 
   //Get notes data and assign to state
   fetchData = () => {
-    fetch("https://fake-server-app-note.herokuapp.com/notes/")
+    fetch("https://note-taking-website-server.vercel.app/notes")
       .then((response) => response.json())
       .then((result) => {
+        console.log(`Result: ${JSON.stringify(result)}`);
         localStorage.setItem("notes", JSON.stringify(result));
         this.setState({
           loading: false,
         });
         this.setState({
-          notes: result,
+          allNotes: result,
         });
-        this.filterActual();
+        this.renderActualNotes();
       });
   };
 
-  //Filter notes that status is false and set to currentNotes (Showed notes)
-  filterActual = () => {
-    const notesData = [...this.state.notes];
+  //Filter notes that isArchived is false and set to actualNotes
+  renderActualNotes = () => {
+    const allNotesData = [...this.state.allNotes];
 
     this.setState({
-      currentNotes: notesData.filter((note) => note.status === false),
+      renderedNotes: allNotesData.filter((note) => note.isArchived === false),
     });
   };
 
-  //Filter notes that status is true and set to currentNotes (Showed notes)
-  filterArchive = () => {
-    const notesData = [...this.state.notes];
+  //Filter notes that status is true and set to archivedNotes
+  renderArchivedNotes = () => {
+    const allNotesData = [...this.state.allNotes];
 
     this.setState({
-      currentNotes: notesData.filter((notes) => notes.status === true),
+      renderedNotes: allNotesData.filter((notes) => notes.isArchived === true),
     });
   };
 
@@ -71,35 +72,41 @@ class App extends Component {
     e.preventDefault();
     switch (this.state.action) {
       case "create":
-        fetch("https://fake-server-app-note.herokuapp.com/notes/", {
+        fetch("https://note-taking-website-server.vercel.app/notes", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(noteToPost),
         })
           .then((response) => response.json())
-          .then((data) => {
-            const newNotes = [...this.state.notes];
-            newNotes.push(data);
-            this.setState({ notes: newNotes });
-            this.filterActual();
-          });
+          .then((note) => {
+            this.fetchData();
+            this.renderActualNotes();
+          })
+          .catch((err) => console.log("Error creating note: ", err));
 
         break;
       case "edit":
         fetch(
-          `https://fake-server-app-note.herokuapp.com/notes/${noteToPost.id}`,
+          `https://note-taking-website-server.vercel.app/notes/${noteToPost._id}`,
           {
-            method: "PATCH",
+            method: "PUT",
             body: JSON.stringify({
+              ...noteToPost,
               title: noteToPost.title,
               context: noteToPost.context,
               color: noteToPost.color,
             }),
-            headers: { "Content-type": "application/json" },
-          }
+            headers: {
+              Accept: "application/json",
+              "Content-type": "application/json",
+            },
+          },
         )
           .then((result) => result.json())
-          .then(() => this.fetchData());
+          .then(() => this.fetchData())
+          .catch((err) => {
+            console.log(`Error updating note ${err}`);
+          });
         break;
       default:
         return "there is error in status";
@@ -115,22 +122,12 @@ class App extends Component {
   editHandler = () => {
     this.setState({ action: "edit" });
   };
-
-  //Get darker color of passed color
-  createBorderColor = (color) => {
-    let secondColor = color.slice(4, 15);
-    let arr = secondColor.split(",");
-    arr = arr.map((el) => parseInt(el) - 70);
-    secondColor = `rgb(${arr[0]},${arr[1]},${arr[2]})`;
-    return secondColor;
-  };
-
   render() {
     return (
       <React.Fragment>
         <Header
-          filterActual={this.filterActual}
-          filterArchive={this.filterArchive}
+          filterActual={this.renderActualNotes}
+          filterArchive={this.renderArchivedNotes}
           createHandler={this.createHandler}
         />
         <Switch>
@@ -139,9 +136,8 @@ class App extends Component {
             path={"/"}
             render={() => (
               <NoteWrapper
-                notes={this.state.currentNotes}
+                notes={this.state.renderedNotes}
                 setSingleNote={this.setSingleNote}
-                createBorderColor={this.createBorderColor}
               />
             )}
           />
@@ -153,7 +149,9 @@ class App extends Component {
                   onFormSubmit={this.onFormSubmit}
                   action={this.state.action}
                   selectedNote={this.state.selectedNote}
-                  lastId={this.state.notes[this.state.notes.length - 1].id}
+                  lastId={
+                    this.state.allNotes[this.state.allNotes.length - 1].id
+                  }
                 />
               );
             }}
@@ -162,15 +160,14 @@ class App extends Component {
             path={`/notes/:${this.state.selectedNote.id}`}
             render={() => (
               <SinglePage
-                noteDetails={this.state.selectedNote}
+                note={this.state.selectedNote}
                 addCurrentNote={this.fetchData}
                 editHandler={this.editHandler}
-                createBorderColor={this.createBorderColor}
               />
             )}
           />
         </Switch>
-        <Lines customLoading={this.state.loading} />
+        {/* <Lines customLoading={this.state.loading} /> */}
       </React.Fragment>
     );
   }

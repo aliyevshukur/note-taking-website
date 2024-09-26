@@ -1,11 +1,9 @@
-@use '../../base.scss';
+@import "../../base.scss";
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-
 
   .note-logo {
     display: flex;
@@ -19,48 +17,49 @@
       margin: 0;
       font-size: 34px;
       line-height: 27px;
-      padding: 30px 0;
+      font-weight: 600;
+      // padding: 30px 0;
 
       &-part {
-        color: rgb(15, 151, 247);
+        color: $aqua;
         padding-left: 1px;
       }
     }
-
   }
 
   .note-logo > img {
     width: 40px;
     height: 40px;
-    padding: 30px 0 42px 30px;
+    padding: 15px 0 42px 15px;
   }
 
   .header-buttons {
     display: flex;
-    justify-content: space-between;;
+    justify-content: space-between;
 
     .header-title {
       font-size: 30px;
     }
 
     .button {
-      @include base.button;
-      background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6));
+      @include button;
+      background: $aqua;
       margin: 0 20px;
-      @media screen and (max-width: base.$break-large){
+      border: 2px solid #594d54;
+      border-radius: 24px;
+      box-shadow: 3px 3px 0px 0 #594d54;
+
+      @media screen and (max-width: $break-large) {
         padding: 10px 40px;
         margin: 0 10px;
       }
     }
-    @media screen and (max-width: base.$break-small){
+    @media screen and (max-width: $break-small) {
       flex-direction: column;
     }
 
     .button:hover {
-      @include base.button-hover();
+      @include button-hover();
     }
-
   }
 }
-
-
