@@ -18,11 +18,11 @@ const CreateEdit = (props) => {
     defaultNote = props.selectedNote;
   } else {
     defaultNote = {
-      id: props.lastId + 1,
       title: "",
       context: "",
       status: false,
       color: "",
+      position: { x: 0, y: 0 },
     };
   }
 

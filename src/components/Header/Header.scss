@@ -48,14 +48,6 @@
       border: 2px solid #594d54;
       border-radius: 24px;
       box-shadow: 3px 3px 0px 0 #594d54;
-
-      @media screen and (max-width: $break-large) {
-        padding: 10px 40px;
-        margin: 0 10px;
-      }
-    }
-    @media screen and (max-width: $break-small) {
-      flex-direction: column;
     }
 
     .button:hover {

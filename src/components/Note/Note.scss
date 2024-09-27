@@ -13,8 +13,6 @@
   box-shadow: 12px 12px 0px 0 #33322e;
   outline: none;
 
-  margin: 30px;
-
   text-align: center;
   font-family: Arial, sans-serif;
   text-decoration: none;
@@ -43,13 +41,5 @@
     position: absolute;
     right: 0;
     top: 0;
-  }
-
-  @media screen and (max-width: base.$break-large) {
-    width: calc(100% / 2 - 62px);
-  }
-
-  @media screen and (max-width: base.$break-small) {
-    width: 100%;
   }
 }

@@ -14,6 +14,9 @@ const Header = (props) => {
       </Link>
 
       <div className='header-buttons'>
+        <button className='button' onClick={props.saveLayout}>
+          Save
+        </button>
         <Link to={"/"} className='button' onClick={props.filterActual}>
           Actual
         </Link>
