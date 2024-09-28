@@ -2,7 +2,7 @@ import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import React from "react";
 
-export function Draggable({ id, position, ...props }) {
+export function Draggable({ id, position, draggedNoteId, ...props }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id,
   });
@@ -15,8 +15,8 @@ export function Draggable({ id, position, ...props }) {
     position: "absolute",
     left: `${position.x}px`,
     top: `${position.y}px`,
+    zIndex: draggedNoteId === id ? 10 : 0,
   };
-  // console.log("Coordinates: ", position.x, position.y);
 
   return (
     <button ref={setNodeRef} style={style} {...listeners} {...attributes}>

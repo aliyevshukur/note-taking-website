@@ -16,6 +16,7 @@ const NoteWrapper = ({ notes, setSingleNote }) => {
     initialTranslate: defaultCoordinates,
     translate: defaultCoordinates,
   });
+  const [draggedNoteId, setDraggedNoteId] = useState(null);
 
   useEffect(() => {
     setNotesLocal(notes);
@@ -57,9 +58,14 @@ const NoteWrapper = ({ notes, setSingleNote }) => {
     }));
   };
 
+  const onDragStart = (event) => {
+    setDraggedNoteId(event.active.id);
+  };
+
   return (
     <DndContext
       modifiers={[restrictToParentElement]}
+      onDragStart={onDragStart}
       onDragMove={onDragMove}
       onDragEnd={onDragEnd}
       onDragCancel={onDragCancel}
@@ -74,6 +80,7 @@ const NoteWrapper = ({ notes, setSingleNote }) => {
               note={note}
               setSingleNote={setSingleNote}
               positionLocal={translate}
+              draggedNoteId={draggedNoteId}
             />
           ))
         )}
