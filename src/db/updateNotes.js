@@ -9,7 +9,5 @@ export function updateNotes(notes) {
     },
   })
     .then((response) => response.json())
-    .then((result) => {
-      console.log("Notes updated: ", result);
-    });
+    .then((result) => {});
 }

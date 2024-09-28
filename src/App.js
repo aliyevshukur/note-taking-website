@@ -38,7 +38,6 @@ export default function App() {
     renderActualNotes();
   }, [allNotes]);
 
-  console.log(`LOading state ${loading}`);
   //Get notes data and assign to state
   const fetchData = () => {
     setLoading(true);
@@ -47,13 +46,11 @@ export default function App() {
       .then((resultRaw) => {
         const result = resultRaw ? resultRaw : [];
         localStorage.setItem("notes", JSON.stringify(result));
-        console.log(`Data fetched with ${result.length} items`);
         setAllNotes(result);
         renderActualNotes();
         setLoading(false);
       })
       .catch((err) => {
-        console.log(`Error: ${err}`);
         setLoading(false);
       });
   };
@@ -61,7 +58,6 @@ export default function App() {
   //Filter notes that isArchived is false and set to actualNotes
   const renderActualNotes = () => {
     const actualNotes = allNotes.filter((note) => note.isArchived === false);
-    console.log(`Currently rendered notes: ${actualNotes}`);
     setRenderedNotes(actualNotes);
   };
 
@@ -90,7 +86,6 @@ export default function App() {
           .then((response) => response.json())
           .then((notes) => {
             localStorage.setItem("notes", JSON.stringify(notes));
-            console.log("Created note: ", notes);
             setAllNotes(notes);
             renderActualNotes();
           })

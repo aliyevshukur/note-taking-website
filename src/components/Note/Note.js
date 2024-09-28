@@ -18,7 +18,6 @@ const Note = ({ note, setSingleNote, draggedNoteId }) => {
   const handleOnClick = () => {
     setSingleNote(note);
     history.push(`/notes/${note._id}`);
-    console.log(`NOTE ${note}`);
   };
 
   return (

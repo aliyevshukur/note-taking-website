@@ -11,7 +11,6 @@ export function Draggable({ id, position, draggedNoteId, ...props }) {
   if (draggedNoteId === id) {
     zIndex = 100;
   }
-  console.log(`INDEX ${zIndex}`);
   const style = {
     transform: CSS.Translate.toString(transform),
     outline: "none",

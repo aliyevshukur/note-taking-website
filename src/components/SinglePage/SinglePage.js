@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import pinImage from "../../img/pin_PNG100.png";
 import Modal from "../Modal/Modal";
 import "./SinglePage.scss";
 
@@ -58,9 +57,7 @@ const SinglePage = (props) => {
         props.addCurrentNote();
         history.goBack();
       })
-      .catch((err) => {
-        console.log(`Error deleteing note: ${err}`);
-      });
+      .catch((err) => {});
     setModalActive(false);
   };
 

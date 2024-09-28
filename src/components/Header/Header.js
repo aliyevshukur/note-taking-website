@@ -6,7 +6,6 @@ import "./Header.scss";
 
 const Header = (props) => {
   const [isModified] = useContext(IsModifiedContext);
-  console.log(`ISMODIFIED: ${isModified}`);
   return (
     <header className={"header"}>
       <Link to={"/"} className='note-logo'>
