@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import noteImage from "../../img/SiteLogo.png";
+import { IsModifiedContext } from "../../utils/Contexts";
 import "./Header.scss";
 
 const Header = (props) => {
+  const [isModified] = useContext(IsModifiedContext);
+  console.log(`ISMODIFIED: ${isModified}`);
   return (
     <header className={"header"}>
       <Link to={"/"} className='note-logo'>
@@ -14,7 +17,11 @@ const Header = (props) => {
       </Link>
 
       <div className='header-buttons'>
-        <button className='button' onClick={props.saveLayout}>
+        <button
+          className='button'
+          onClick={props.saveLayout}
+          disabled={!isModified}
+        >
           Save
         </button>
         <Link to={"/"} className='button' onClick={props.filterActual}>

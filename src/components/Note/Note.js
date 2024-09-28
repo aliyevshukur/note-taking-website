@@ -15,7 +15,6 @@ const Note = ({ note, setSingleNote, draggedNoteId }) => {
     backgroundColor: `${note.color}`,
     opacity: `${note.isArchived && "40%"}`,
   };
-  console.log(`NOTE ${JSON.stringify(note)}`);
   const handleOnClick = () => {
     setSingleNote(note);
     history.push(`/notes/${note._id}`);

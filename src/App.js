@@ -1,5 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Lines } from "react-preloaders";
+import React, { useEffect, useState } from "react";
+import {
+  Circle,
+  Cube,
+  Dots,
+  Lines,
+  Planets,
+  Ripple,
+  Sugar,
+  Zoom,
+} from "react-preloaders";
 import { Switch } from "react-router";
 import { Route } from "react-router-dom";
 import "./App.scss";
@@ -8,15 +17,12 @@ import Header from "./components/Header/Header";
 import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
 import SinglePage from "./components/SinglePage/SinglePage";
 import { updateNotes } from "./db/updateNotes";
-import { NotesLocalContext } from "./utils/Contexts";
+import { IsModifiedContext, NotesLocalContext } from "./utils/Contexts";
 
 export default function App() {
-  const [allNotes, setAllNotes] = useState(
-    JSON.parse(localStorage.getItem("notes")) || [],
-  );
-  const [notesLocal, setNotesLocal] = useState(
-    JSON.parse(localStorage.getItem("notes")) || [],
-  );
+  const [allNotes, setAllNotes] = useState([]);
+  const [notesLocal, setNotesLocal] = useState([]);
+  const [isModified, setIsModified] = useState(false);
   const [renderedNotes, setRenderedNotes] = useState([]);
   const [action, setAction] = useState("");
   const [selectedNote, setSelectedNote] = useState(
@@ -28,24 +34,35 @@ export default function App() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    renderActualNotes();
+  }, [allNotes]);
+
+  console.log(`LOading state ${loading}`);
   //Get notes data and assign to state
   const fetchData = () => {
+    setLoading(true);
     fetch("https://note-taking-website-server.vercel.app/notes")
       .then((response) => response.json())
       .then((resultRaw) => {
         const result = resultRaw ? resultRaw : [];
-        console.log(`Result: ${JSON.stringify(result)}`);
         localStorage.setItem("notes", JSON.stringify(result));
-        setLoading(false);
+        console.log(`Data fetched with ${result.length} items`);
         setAllNotes(result);
         renderActualNotes();
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+        setLoading(false);
       });
   };
 
   //Filter notes that isArchived is false and set to actualNotes
   const renderActualNotes = () => {
-    const allNotesData = [...allNotes];
-    setRenderedNotes(allNotesData.filter((note) => note.isArchived === false));
+    const actualNotes = allNotes.filter((note) => note.isArchived === false);
+    console.log(`Currently rendered notes: ${actualNotes}`);
+    setRenderedNotes(actualNotes);
   };
 
   //Filter notes that status is true and set to archivedNotes
@@ -120,54 +137,61 @@ export default function App() {
 
   const saveLayout = () => {
     localStorage.setItem("notes", JSON.stringify(notesLocal));
-    updateNotes();
+    updateNotes(notesLocal);
+    setIsModified(false);
   };
 
   return (
     <NotesLocalContext.Provider value={[notesLocal, setNotesLocal]}>
-      <React.Fragment>
-        <Header
-          filterActual={renderActualNotes}
-          filterArchive={renderArchivedNotes}
-          createHandler={createHandler}
-          saveLayout={saveLayout}
-        />
-        <Switch>
-          <Route
-            exact
-            path={"/"}
-            render={() => (
-              <NoteWrapper
-                notes={renderedNotes}
-                setSingleNote={setSingleNote}
-              />
-            )}
+      <IsModifiedContext.Provider value={[isModified, setIsModified]}>
+        <React.Fragment>
+          <Header
+            filterActual={renderActualNotes}
+            filterArchive={renderArchivedNotes}
+            createHandler={createHandler}
+            saveLayout={saveLayout}
           />
-          <Route
-            path={"/create-edit"}
-            render={() => {
-              return (
-                <CreateEdit
-                  onFormSubmit={onFormSubmit}
-                  action={action}
-                  selectedNote={selectedNote}
+          <Switch>
+            <Route
+              exact
+              path={"/"}
+              render={() => (
+                <NoteWrapper
+                  notes={renderedNotes}
+                  setSingleNote={setSingleNote}
                 />
-              );
-            }}
+              )}
+            />
+            <Route
+              path={"/create-edit"}
+              render={() => {
+                return (
+                  <CreateEdit
+                    onFormSubmit={onFormSubmit}
+                    action={action}
+                    selectedNote={selectedNote}
+                  />
+                );
+              }}
+            />
+            <Route
+              path={`/notes/:${selectedNote.id}`}
+              render={() => (
+                <SinglePage
+                  note={selectedNote}
+                  addCurrentNote={fetchData}
+                  editHandler={editHandler}
+                />
+              )}
+            />
+          </Switch>
+          <Sugar
+            background={"#fff0ee"}
+            animation={"slide"}
+            customLoading={loading}
           />
-          <Route
-            path={`/notes/:${selectedNote.id}`}
-            render={() => (
-              <SinglePage
-                note={selectedNote}
-                addCurrentNote={fetchData}
-                editHandler={editHandler}
-              />
-            )}
-          />
-        </Switch>
-        <Lines customLoading={loading} />
-      </React.Fragment>
+        </React.Fragment>
+      </IsModifiedContext.Provider>
     </NotesLocalContext.Provider>
   );
 }

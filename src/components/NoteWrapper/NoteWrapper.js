@@ -1,13 +1,19 @@
-import { DndContext, closestCorners, useDraggable } from "@dnd-kit/core";
+import {
+  DndContext,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 import React, { useContext, useEffect, useState } from "react";
-import { NotesLocalContext } from "../../utils/Contexts";
+import { IsModifiedContext, NotesLocalContext } from "../../utils/Contexts";
 import { Droppable } from "../Droppable/Droppable";
 import Note from "../Note/Note";
 import "./NoteWrapper.scss";
 
 const NoteWrapper = ({ notes, setSingleNote }) => {
   const [notesLocal, setNotesLocal] = useContext(NotesLocalContext);
+  const [isModified, setIsModified] = useContext(IsModifiedContext);
   const defaultCoordinates = {
     x: 0,
     y: 0,
@@ -17,6 +23,13 @@ const NoteWrapper = ({ notes, setSingleNote }) => {
     translate: defaultCoordinates,
   });
   const [draggedNoteId, setDraggedNoteId] = useState(null);
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+  );
 
   useEffect(() => {
     setNotesLocal(notes);
@@ -31,18 +44,10 @@ const NoteWrapper = ({ notes, setSingleNote }) => {
       },
     }));
   };
-  console.log(`NOTES LOCAL: ${JSON.stringify(notesLocal)}`);
   const onDragEnd = (event) => {
     const draggingNote = notesLocal.find((x) => x._id === event.active.id);
     draggingNote.position.x += event.delta.x;
     draggingNote.position.y += event.delta.y;
-    // setNotesLocal((notesLocal) => {
-    //   const notesLocalTemp = notesLocal.map((x) => {
-    //     if (x.id === draggingNote.id) return draggingNote;
-    //     return x;
-    //   });
-    //   return notesLocalTemp;
-    // });
 
     setTranslate(({ translate }) => {
       return {
@@ -60,11 +65,12 @@ const NoteWrapper = ({ notes, setSingleNote }) => {
 
   const onDragStart = (event) => {
     setDraggedNoteId(event.active.id);
+    setIsModified(true);
   };
-
   return (
     <DndContext
       modifiers={[restrictToParentElement]}
+      sensors={sensors}
       onDragStart={onDragStart}
       onDragMove={onDragMove}
       onDragEnd={onDragEnd}
