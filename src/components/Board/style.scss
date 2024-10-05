@@ -1,0 +1,18 @@
+.board {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  border: 40px solid transparent;
+  border-image: url("../../img/bg.jpg") 55 round;
+
+  background: url("../../img/board.png") no-repeat;
+  background-size: 100% 100%;
+
+  .no-notes {
+    margin: 50px 0px 0px 50px;
+    font-size: 26px;
+  }
+}

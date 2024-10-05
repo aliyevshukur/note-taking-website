@@ -38,6 +38,13 @@
     transform: translateY(0px);
   }
 }
+
+@mixin tablet {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
 $break-small: 680px;
 $break-large: 970px;
 

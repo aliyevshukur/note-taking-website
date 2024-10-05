@@ -8,7 +8,7 @@ import {
   yellow,
   yellowLight,
 } from "../../utils/colors";
-import "./CreateEdit.scss";
+import "./style.scss";
 
 const CreateEdit = (props) => {
   const history = useHistory();

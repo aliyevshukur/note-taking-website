@@ -1,17 +1,22 @@
 import {
   DndContext,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { restrictToParentElement } from "@dnd-kit/modifiers";
+import {
+  restrictToParentElement,
+  restrictToWindowEdges,
+} from "@dnd-kit/modifiers";
 import React, { useContext, useEffect, useState } from "react";
 import { IsModifiedContext, NotesLocalContext } from "../../utils/Contexts";
+import { customModifier } from "../../utils/customModifier";
 import { Droppable } from "../Droppable/Droppable";
 import Note from "../Note/Note";
-import "./NoteWrapper.scss";
+import "./style.scss";
 
-const NoteWrapper = ({ notes, setSingleNote }) => {
+const Board = ({ notes, setSingleNote }) => {
   const [notesLocal, setNotesLocal] = useContext(NotesLocalContext);
   const [isModified, setIsModified] = useContext(IsModifiedContext);
   const defaultCoordinates = {
@@ -31,21 +36,27 @@ const NoteWrapper = ({ notes, setSingleNote }) => {
     }),
   );
 
+  const [noteSize, setNoteSize] = useState({ width: "271px", height: "287px" });
+
   useEffect(() => {
     setNotesLocal(notes);
-  }, [notes]);
+  }, [notes, setNotesLocal]);
 
   const onDragMove = ({ delta }) => {
-    setTranslate(({ initialTranslate }) => ({
-      initialTranslate,
-      translate: {
-        x: initialTranslate.x + delta.x,
-        y: initialTranslate.y + delta.y,
-      },
-    }));
+    setTranslate(({ initialTranslate }) => {
+      return {
+        initialTranslate,
+        translate: {
+          x: initialTranslate.x + delta.x,
+          y: initialTranslate.y + delta.y,
+        },
+      };
+    });
   };
   const onDragEnd = (event) => {
-    const draggingNote = notesLocal.find((x) => x._id === event.active.id);
+    const draggingNote = notesLocal.find(
+      (note) => note._id === event.active.id,
+    );
     draggingNote.position.x += event.delta.x;
     draggingNote.position.y += event.delta.y;
 
@@ -62,31 +73,34 @@ const NoteWrapper = ({ notes, setSingleNote }) => {
       initialTranslate,
     }));
   };
-
   const onDragStart = (event) => {
     setDraggedNoteId(event.active.id);
     setIsModified(true);
   };
+
   return (
     <DndContext
-      modifiers={[restrictToParentElement]}
+      modifiers={[customModifier]}
       sensors={sensors}
       onDragStart={onDragStart}
       onDragMove={onDragMove}
       onDragEnd={onDragEnd}
       onDragCancel={onDragCancel}
     >
-      <Droppable className={"note-wrapper"}>
-        {notesLocal.length === 0 ? (
+      <Droppable className={"board"}>
+        {notesLocal?.length === 0 ? (
           <p className='no-notes'>No notes found</p>
         ) : (
-          notesLocal.map((note) => (
+          notesLocal?.map((note) => (
             <Note
               key={note._id}
               note={note}
               setSingleNote={setSingleNote}
               positionLocal={translate}
               draggedNoteId={draggedNoteId}
+              style={{ height: noteSize.height, width: noteSize.width }}
+              translate={translate}
+              noteSize={noteSize}
             />
           ))
         )}
@@ -94,4 +108,4 @@ const NoteWrapper = ({ notes, setSingleNote }) => {
     </DndContext>
   );
 };
-export default NoteWrapper;
+export default Board;

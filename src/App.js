@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-  Circle,
-  Cube,
-  Dots,
-  Lines,
-  Planets,
-  Ripple,
-  Sugar,
-  Zoom,
-} from "react-preloaders";
+import { Sugar } from "react-preloaders";
 import { Switch } from "react-router";
 import { Route } from "react-router-dom";
 import "./App.scss";
-import CreateEdit from "./components/CreateEdit/CreateEdit";
+import Create from "./Routes/Create";
+import Home from "./Routes/Home";
 import Header from "./components/Header/Header";
-import NoteWrapper from "./components/NoteWrapper/NoteWrapper";
 import SinglePage from "./components/SinglePage/SinglePage";
 import { updateNotes } from "./db/updateNotes";
 import { IsModifiedContext, NotesLocalContext } from "./utils/Contexts";
@@ -44,7 +35,10 @@ export default function App() {
     fetch("https://note-taking-website-server.vercel.app/notes")
       .then((response) => response.json())
       .then((resultRaw) => {
-        const result = resultRaw ? resultRaw : [];
+        let result = [];
+        if (resultRaw.length >= 0) {
+          result = [...resultRaw];
+        }
         localStorage.setItem("notes", JSON.stringify(result));
         setAllNotes(result);
         renderActualNotes();
@@ -63,8 +57,8 @@ export default function App() {
 
   //Filter notes that status is true and set to archivedNotes
   const renderArchivedNotes = () => {
-    const allNotesData = [...allNotes];
-    setRenderedNotes(allNotesData.filter((notes) => notes.isArchived === true));
+    const archivedNotes = allNotes.filter((note) => note.isArchived === true);
+    setRenderedNotes(archivedNotes);
   };
 
   //Write selected note to localStore
@@ -130,12 +124,15 @@ export default function App() {
     setAction("edit");
   };
 
+  /**
+   * Saves the current layout to local storage and to the server.
+   * The save action is also used to mark the layout as not modified.
+   */
   const saveLayout = () => {
     localStorage.setItem("notes", JSON.stringify(notesLocal));
     updateNotes(notesLocal);
     setIsModified(false);
   };
-
   return (
     <NotesLocalContext.Provider value={[notesLocal, setNotesLocal]}>
       <IsModifiedContext.Provider value={[isModified, setIsModified]}>
@@ -151,17 +148,14 @@ export default function App() {
               exact
               path={"/"}
               render={() => (
-                <NoteWrapper
-                  notes={renderedNotes}
-                  setSingleNote={setSingleNote}
-                />
+                <Home notes={renderedNotes} setSingleNote={setSingleNote} />
               )}
             />
             <Route
               path={"/create-edit"}
               render={() => {
                 return (
-                  <CreateEdit
+                  <Create
                     onFormSubmit={onFormSubmit}
                     action={action}
                     selectedNote={selectedNote}
@@ -180,12 +174,8 @@ export default function App() {
               )}
             />
           </Switch>
-          <Sugar
-            background={"#fff0ee"}
-            animation={"slide"}
-            customLoading={loading}
-          />
         </React.Fragment>
+        {/* <Sugar background={"#fff0ee"} animation={"slide"} time={1000} /> */}
       </IsModifiedContext.Provider>
     </NotesLocalContext.Provider>
   );
