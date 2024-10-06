@@ -15,6 +15,7 @@
     // opacity: 0.8;
     filter: brightness(90%);
     transition: filter ease-in-out 0.2s;
+    overflow: hidden;
   }
 
   &:active {
