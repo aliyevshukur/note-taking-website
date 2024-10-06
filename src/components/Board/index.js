@@ -5,43 +5,54 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import {
-  restrictToParentElement,
-  restrictToWindowEdges,
-} from "@dnd-kit/modifiers";
 import React, { useContext, useEffect, useState } from "react";
 import { IsModifiedContext, NotesLocalContext } from "../../utils/Contexts";
 import { customModifier } from "../../utils/customModifier";
+import useWindowSize from "../../utils/Hooks/useWindowSize";
 import { Droppable } from "../Droppable/Droppable";
 import Note from "../Note/Note";
 import "./style.scss";
 
 const Board = ({ notes, setSingleNote }) => {
   const [notesLocal, setNotesLocal] = useContext(NotesLocalContext);
+  const [noteSize, setNoteSize] = useState({ width: "271px", height: "287px" });
+  const [draggedNoteId, setDraggedNoteId] = useState(null);
   const [isModified, setIsModified] = useContext(IsModifiedContext);
-  const defaultCoordinates = {
-    x: 0,
-    y: 0,
-  };
+  const defaultCoordinates = { x: 0, y: 0 };
   const [{ translate }, setTranslate] = useState({
     initialTranslate: defaultCoordinates,
     translate: defaultCoordinates,
   });
-  const [draggedNoteId, setDraggedNoteId] = useState(null);
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 8,
-      },
-    }),
-  );
 
-  const [noteSize, setNoteSize] = useState({ width: "271px", height: "287px" });
+  // SENSORS
+  const pointerSensor = useSensor(PointerSensor, {
+    activationConstraint: {
+      distance: 10,
+    },
+  });
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 250,
+      tolerance: 5,
+    },
+  });
+  const sensors = useSensors(pointerSensor, touchSensor);
 
+  // Copy notes to Local storage to modify them before updating to server
   useEffect(() => {
     setNotesLocal(notes);
   }, [notes, setNotesLocal]);
 
+  const windowSize = useWindowSize();
+  useEffect(() => {
+    if (windowSize.width < 375) {
+      setNoteSize({ width: "216px", height: "230px" });
+    } else {
+      setNoteSize({ width: "271px", height: "287px" });
+    }
+  }, [windowSize]);
+
+  // DRAG EVENT HANDLERS
   const onDragMove = ({ delta }) => {
     setTranslate(({ initialTranslate }) => {
       return {

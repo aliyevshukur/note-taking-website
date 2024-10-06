@@ -1,0 +1,11 @@
+@import "../../_base.scss";
+
+.draggable {
+  position: absolute;
+
+  @include mobileL {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}

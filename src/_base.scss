@@ -45,6 +45,18 @@
   }
 }
 
+@mixin mobileL {
+  @media only screen and (max-width: 425px) {
+    @content;
+  }
+}
+
+@mixin mobileM {
+  @media only screen and (max-width: 375px) {
+    @content;
+  }
+}
+
 $break-small: 680px;
 $break-large: 970px;
 

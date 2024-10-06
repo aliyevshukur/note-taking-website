@@ -1,30 +1,46 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import React, { useMemo } from "react";
+import React, { useEffect, useState } from "react";
+import useWindowSize from "../../utils/Hooks/useWindowSize";
+import "./style.scss";
 
 export function Draggable({ id, position, draggedNoteId, ...props }) {
+  const windowSize = useWindowSize();
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id,
+    disabled: windowSize.width < 425,
   });
 
   let zIndex = 0;
   if (draggedNoteId === id) {
     zIndex = 100;
   }
+
+  let draggableStyle = {};
+  if (windowSize.width > 425) {
+    draggableStyle = {
+      left: `${position.x}px`,
+      top: `${position.y}px`,
+      zIndex: zIndex,
+      touchAction: "none",
+      transform: CSS.Translate.toString(transform),
+    };
+  }
   const style = {
-    transform: CSS.Translate.toString(transform),
+    background: "transparent",
     outline: "none",
     padding: "0px",
     border: "none",
-    background: "transparent",
-    position: "absolute",
-    left: `${position.x}px`,
-    top: `${position.y}px`,
-    zIndex: zIndex,
   };
 
   return (
-    <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
+    <button
+      ref={setNodeRef}
+      style={{ ...style, ...draggableStyle }}
+      {...listeners}
+      {...attributes}
+      className='draggable'
+    >
       {props.children}
     </button>
   );

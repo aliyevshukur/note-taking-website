@@ -1,4 +1,4 @@
-@use "../../base.scss";
+@import "../../base.scss";
 
 .note {
   display: flex;
@@ -16,9 +16,17 @@
   text-decoration: none;
   cursor: pointer;
 
+  @include mobileL {
+    box-shadow: 0 0 0 0 #fff;
+  }
+
+  @include mobileM {
+    font-size: 12px;
+  }
+
   .note-title {
     margin: 0;
-    font-size: 28px;
+    font-size: 1.75em;
     font-family: "Roboto", sans-serif;
     text-align: left;
     border-bottom: 4px solid #33322e;
@@ -31,7 +39,7 @@
     margin: 0;
     height: 100%;
     text-align: left;
-    font-size: 16px;
+    font-size: 1em;
     white-space: pre-line;
   }
 
