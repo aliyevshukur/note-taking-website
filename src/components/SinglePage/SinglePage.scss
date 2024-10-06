@@ -1,17 +1,16 @@
-@use "../../base.scss";
+@import "../../_base.scss";
 
 .notesContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  // height: 100%;
-  margin-top: 70px;
+  height: 90vh;
+  padding: 30px;
 }
 
 .notes {
-  width: 70%;
   min-height: 400px;
+  margin-bottom: 30px;
 
   color: #000000;
   border: 4px solid #33322e;
@@ -37,14 +36,18 @@
 }
 
 .buttonDesign {
-  @include base.button();
-  margin: 0 10px 0 10px;
-  padding: 15px 30px;
+  @include button();
+  margin: 0 10px;
+  padding: 10px 20px;
   font-size: 20px;
-  margin-top: 70px;
   border-radius: 30px;
+
+  @include mobileM {
+    padding: 5px 10px;
+    font-size: 1em;
+  }
 }
 
 .buttonDesign:hover {
-  @include base.button-hover();
+  @include button-hover();
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import noteImage from "../../img/SiteLogo.png";
 import { IsModifiedContext } from "../../utils/Contexts";
@@ -9,11 +9,26 @@ const Header = (props) => {
   const [isButtonsVisible, setIsButtonsVisible] = useState(true);
   const buttonsRef = useRef(null);
 
-  const handleBurgerMenuClick = () => {
+  const handleBurgerMenuClick = (e) => {
     setIsButtonsVisible(!isButtonsVisible);
     console.log(`Ref: ${buttonsRef.current?.classList}`);
     buttonsRef.current?.classList.toggle("active");
   };
+
+  const handleDocumentClick = (e) => {
+    if (!buttonsRef.current.contains(e.target) && isButtonsVisible) {
+      setIsButtonsVisible(false);
+      buttonsRef.current.classList.remove("active");
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [isButtonsVisible, buttonsRef]);
+
   return (
     <header className={"header"}>
       <Link to={"/"} className='note-logo'>
@@ -23,7 +38,7 @@ const Header = (props) => {
         </h1>
       </Link>
 
-      <div className='burger-menu' onClick={() => handleBurgerMenuClick()}>
+      <div className='burger-menu' onClick={(e) => handleBurgerMenuClick(e)}>
         <div className='line' />
         <div className='line' />
         <div className='line' />
@@ -47,7 +62,10 @@ const Header = (props) => {
         <Link
           to={"/create-edit"}
           className='button'
-          onClick={props.createHandler}
+          onClick={() => {
+            setIsButtonsVisible(false);
+            props.createHandler();
+          }}
         >
           Create
         </Link>
