@@ -85,6 +85,7 @@ const CreateEdit = (props) => {
           defaultValue={currentNote.title}
           className={"title"}
         />
+        <h1 className={"form-title"}>Note context</h1>
 
         <textarea
           name='context'
@@ -95,9 +96,9 @@ const CreateEdit = (props) => {
           className={"context"}
         />
 
-        <div className='color-buttons'>
-          <p>Color:</p>
+        <h1 className={"form-title"}>Colors</h1>
 
+        <div className='color-buttons'>
           <div
             className={"button-peach"}
             style={isActive(peach)}

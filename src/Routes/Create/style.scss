@@ -13,10 +13,12 @@ $border-radius: 10px;
 @mixin inputStyle {
   background: linear-gradient(rgba(70, 70, 70, 0.6), rgba(77, 77, 77, 0.6));
   color: #fff;
-  width: 600px;
   border: none;
   border-radius: 10px;
   padding: 15px;
+  width: 100%;
+  min-width: 0px;
+  min-height: 0px;
   &:focus {
     outline: none;
   }
@@ -26,14 +28,15 @@ $border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 86vh;
+  height: 90vh;
+  padding: 10%;
 
   .create-edit-form {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    width: 700px;
+    padding: 20px 10px;
     border-radius: $border-radius;
     background: linear-gradient(
       rgba(152, 152, 152, 0.6),
@@ -43,17 +46,19 @@ $border-radius: 10px;
     .form-title {
       color: #fff;
       font-size: 20px;
-      margin-top: 10px;
+      margin-bottom: 15px;
     }
 
     .title {
       @include inputStyle();
       font-size: 22px;
+      margin-bottom: 20px;
     }
 
     .context {
       @include inputStyle();
       font-size: 16px;
+      margin-bottom: 20px;
     }
 
     .color-buttons {
@@ -61,8 +66,10 @@ $border-radius: 10px;
       color: #fff;
       display: flex;
       align-items: center;
+      justify-content: space-evenly;
       font-weight: bold;
-      padding: 10px 70px;
+      padding: 5px 0px;
+      margin-bottom: 20px;
       border-radius: $border-radius;
 
       .button-peach {
@@ -102,8 +109,4 @@ $border-radius: 10px;
       }
     }
   }
-}
-
-.create-edit-form > * {
-  margin-bottom: 30px;
 }

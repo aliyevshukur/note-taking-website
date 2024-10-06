@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  height: 70px;
+  height: 10vh;
   width: 100%;
   background: transparent;
 
@@ -63,10 +63,22 @@
     display: flex;
     justify-content: space-between;
 
-    @media only screen and (max-width: 768px) {
+    @include tablet {
       display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $peach;
+      padding: 20px;
+      z-index: 2;
     }
 
+    @include mobileL {
+      padding: 10px;
+    }
     .header-title {
       font-size: 30px;
     }
@@ -80,6 +92,15 @@
       box-shadow: 3px 3px 0px 0 #594d54;
       padding: 10px 20px;
 
+      @include tablet {
+        margin: 0;
+      }
+
+      @include mobileL {
+        padding: 5px 10px;
+        font-size: 0.8em;
+      }
+
       &:disabled {
         @include button-disabled;
       }
@@ -88,5 +109,9 @@
     .button:hover {
       @include button-hover();
     }
+  }
+
+  .active {
+    display: flex;
   }
 }
