@@ -23,6 +23,7 @@ const CreateEdit = (props) => {
       status: false,
       color: "",
       position: { x: 0, y: 0 },
+      zIndex: "1",
     };
   }
 

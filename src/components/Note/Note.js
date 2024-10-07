@@ -14,9 +14,12 @@ const Note = ({
   noteSize,
 }) => {
   const history = useHistory();
+  const { zIndex = "0" } = note;
+
   const noteStyle = {
     backgroundColor: `${note.color}`,
     opacity: `${note.isArchived && "40%"}`,
+    zIndex: zIndex,
     ...style,
   };
   /**
@@ -84,6 +87,7 @@ const Note = ({
       id={note._id}
       position={note.position}
       draggedNoteId={draggedNoteId}
+      zIndex={note.zIndex}
     >
       <div style={noteStyle} className={"note"}>
         <h1 className={"note-title"}>{note.title}</h1>

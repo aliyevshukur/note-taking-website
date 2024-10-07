@@ -4,17 +4,12 @@ import React, { useEffect, useState } from "react";
 import useWindowSize from "../../utils/Hooks/useWindowSize";
 import "./style.scss";
 
-export function Draggable({ id, position, draggedNoteId, ...props }) {
+export function Draggable({ id, position, draggedNoteId, zIndex, ...props }) {
   const windowSize = useWindowSize();
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id,
     disabled: windowSize.width < 425,
   });
-
-  let zIndex = 0;
-  if (draggedNoteId === id) {
-    zIndex = 100;
-  }
 
   let draggableStyle = {};
   if (windowSize.width > 425) {

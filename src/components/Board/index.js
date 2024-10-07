@@ -9,6 +9,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { IsModifiedContext, NotesLocalContext } from "../../utils/Contexts";
 import { customModifier } from "../../utils/customModifier";
 import useWindowSize from "../../utils/Hooks/useWindowSize";
+import { findBiggestzIndex } from "../../utils/methods";
 import { Droppable } from "../Droppable/Droppable";
 import Note from "../Note/Note";
 import "./style.scss";
@@ -90,6 +91,11 @@ const Board = ({ notes, setSingleNote, loading }) => {
   const onDragStart = (event) => {
     setDraggedNoteId(event.active.id);
     setIsModified(true);
+
+    const draggingNote = notesLocal.find(
+      (note) => note._id === event.active.id,
+    );
+    draggingNote.zIndex = findBiggestzIndex(notesLocal) + 1;
   };
 
   if (loading) {
