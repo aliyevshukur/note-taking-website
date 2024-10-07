@@ -2,23 +2,41 @@
 $border-radius: 10px;
 
 @mixin colorButtonStyle {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   cursor: pointer;
   border: none;
   border-radius: 50%;
   margin: 10px;
+
+  @include laptopL {
+    width: 70px;
+    height: 70px;
+  }
+
+  @include laptopL {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 @mixin inputStyle {
   background: linear-gradient(rgba(70, 70, 70, 0.6), rgba(77, 77, 77, 0.6));
   color: #fff;
+
   border: none;
   border-radius: 10px;
-  padding: 15px;
+
   width: 100%;
+  height: 80px;
   min-width: 0px;
   min-height: 0px;
+  padding: 30px;
+  margin-bottom: 20px;
+
+
+  font-size: 30px;
+
   &:focus {
     outline: none;
   }
@@ -28,15 +46,17 @@ $border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
-  padding: 10%;
+  min-height: 90vh;
+  padding: 20px 50px 0px 50px;
 
   .create-edit-form {
-    flex-grow: 1;
+    width: 1200px;
+    padding: 18px 20px;
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 20px 10px;
+    // justify-content: center;
+
     border-radius: $border-radius;
     background: linear-gradient(
       rgba(152, 152, 152, 0.6),
@@ -45,20 +65,17 @@ $border-radius: 10px;
 
     .form-title {
       color: #fff;
-      font-size: 20px;
+      font-size: 1.2rem;
       margin-bottom: 15px;
     }
 
     .title {
       @include inputStyle();
-      font-size: 22px;
-      margin-bottom: 20px;
     }
 
     .context {
       @include inputStyle();
-      font-size: 16px;
-      margin-bottom: 20px;
+      height: 400px;
     }
 
     .color-buttons {

@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import noteImage from "../../img/SiteLogo.png";
 import { IsModifiedContext } from "../../utils/Contexts";
 import "./Header.scss";
 
 const Header = (props) => {
+  const history = useHistory();
   const [isModified] = useContext(IsModifiedContext);
   const [isButtonsVisible, setIsButtonsVisible] = useState(true);
   const buttonsRef = useRef(null);
@@ -32,7 +34,7 @@ const Header = (props) => {
   return (
     <header className={"header"}>
       <Link to={"/"} className='note-logo'>
-        <img src={noteImage} alt='logo' />
+        <img src={noteImage} alt='logo' className="note-logo-img"/>
         <h1 className={"header-title"}>
           Noted!<span className={"header-title-part"}>App</span>
         </h1>
@@ -52,23 +54,24 @@ const Header = (props) => {
         >
           Save
         </button>
-        <Link to={"/"} className='button' onClick={props.filterActual}>
+        <button className='button' onClick={props.filterActual}>
           Actual
-        </Link>
-        <Link to={"/"} className='button' onClick={props.filterArchive}>
+        </button>
+        <button className='button' onClick={props.filterArchive}>
           Archive
-        </Link>
+        </button>
 
-        <Link
-          to={"/create-edit"}
+        <button
+
           className='button'
           onClick={() => {
+            history.push("/create-edit")
             setIsButtonsVisible(false);
             props.createHandler();
           }}
         >
           Create
-        </Link>
+        </button>
       </div>
     </header>
   );

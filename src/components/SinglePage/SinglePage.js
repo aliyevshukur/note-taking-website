@@ -68,15 +68,11 @@ const SinglePage = (props) => {
 
   return (
     <div className='notesContainer'>
+
+    <button onClick={() => history.goBack()} className="back-button"> &lt; Back</button>
+
       <div className='notes' style={noteStyle}>
         <div>
-          {/* <img
-            src={pinImage}
-            alt={"pin_img"}
-            height={"67px"}
-            width={"70px"}
-            style={{ margin: "0px auto" }}
-          /> */}
           <h1 className='notes-title'>{props.note.title}</h1>
         </div>
         <div className='singleContext'>

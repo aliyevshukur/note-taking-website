@@ -11,15 +11,28 @@
   height: 100%;
   padding: 20px;
 
-  border: 40px solid transparent;
-  border-image: url("../../img/bg.jpg") 55 round;
+  border: 100px solid transparent;
+  border-image: url("../../img/bg.jpg") 55 stretch;
 
   background: url("../../img/board.png") no-repeat;
   background-size: 100% 100%;
 
-  @include mobileM {
+
+  @include desktopL {
+    border: 80px solid transparent;
+    border-image: url("../../img/bg.jpg") 55 stretch;
+  }
+  @include desktopM {
+    border: 60px solid transparent;
+    border-image: url("../../img/bg.jpg") 55 stretch;
+  }
+  @include laptopL {
+    border: 40px solid transparent;
+    border-image: url("../../img/bg.jpg") 55 stretch;
+  }
+  @include mobileL {
     border: 30px solid transparent;
-    border-image: url("../../img/bg.jpg") 55 round;
+    border-image: url("../../img/bg.jpg") 55 stretch;
   }
 
   .no-notes {

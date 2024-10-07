@@ -6,6 +6,13 @@
   align-items: center;
   height: 90vh;
   padding: 30px;
+
+  .back-button {
+    @include button;
+    align-self: flex-start;
+    margin-bottom: 20px;
+  }
+
 }
 
 .notes {

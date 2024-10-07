@@ -1,6 +1,19 @@
 @import "./_base.scss";
 
 html {
+  font-size: 180%;
+
+  @include desktopL {
+    font-size: 150%;
+  }
+
+  @include desktopM {
+    font-size: 140%;
+  }
+
+  @include laptopL {
+    font-size: 100%;
+  }
 }
 
 body {

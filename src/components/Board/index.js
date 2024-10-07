@@ -47,6 +47,8 @@ const Board = ({ notes, setSingleNote }) => {
   useEffect(() => {
     if (windowSize.width < 375) {
       setNoteSize({ width: "216px", height: "230px" });
+    } else if (windowSize.width > 1440) {
+      setNoteSize({ width: "432px", height: "460px" });
     } else {
       setNoteSize({ width: "271px", height: "287px" });
     }

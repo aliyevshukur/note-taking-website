@@ -7,8 +7,10 @@
  * @return {Object} New coordinates of the restricted object.
  */
 
+import useWindowSize from "./Hooks/useWindowSize";
+
 export function restrictToBoundingRect(transform, rect, boundingRect) {
-  const borderOffet = 40;
+  let borderOffet = 80;
 
   const value = {
     ...transform,
