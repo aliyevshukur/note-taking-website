@@ -2,10 +2,10 @@
 
 .notesContainer {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   height: 90vh;
-  padding: 30px;
+  padding: 30px 100px;
 
   .back-button {
     @include button;
@@ -16,7 +16,9 @@
 }
 
 .notes {
-  min-height: 400px;
+  height: 600px;
+  width: 100%;
+  max-width: 800px;
   margin-bottom: 30px;
 
   color: #000000;
@@ -42,6 +44,9 @@
   white-space: pre-line;
 }
 
+.notesButtons {
+}
+
 .buttonDesign {
   @include button();
   margin: 0 10px;
@@ -53,8 +58,4 @@
     padding: 5px 10px;
     font-size: 1em;
   }
-}
-
-.buttonDesign:hover {
-  @include button-hover();
 }

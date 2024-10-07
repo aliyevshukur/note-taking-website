@@ -11,19 +11,18 @@
   height: 100%;
   padding: 20px;
 
-  border: 100px solid transparent;
+  border: 80px solid transparent;
   border-image: url("../../img/bg.jpg") 55 stretch;
 
   background: url("../../img/board.png") no-repeat;
   background-size: 100% 100%;
 
-
   @include desktopL {
-    border: 80px solid transparent;
+    border: 60px solid transparent;
     border-image: url("../../img/bg.jpg") 55 stretch;
   }
   @include desktopM {
-    border: 60px solid transparent;
+    border: 40px solid transparent;
     border-image: url("../../img/bg.jpg") 55 stretch;
   }
   @include laptopL {
@@ -38,5 +37,23 @@
   .no-notes {
     margin: 50px 0px 0px 50px;
     font-size: 26px;
+  }
+
+  .loader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: solid 5px #fff;
+    border-bottom-color: $peach;
+    animation: rotation 1s linear infinite;
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   }
 }

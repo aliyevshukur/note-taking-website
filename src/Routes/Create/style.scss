@@ -2,17 +2,12 @@
 $border-radius: 10px;
 
 @mixin colorButtonStyle {
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
   border: none;
   border-radius: 50%;
   margin: 10px;
-
-  @include laptopL {
-    width: 70px;
-    height: 70px;
-  }
 
   @include laptopL {
     width: 50px;
@@ -28,14 +23,14 @@ $border-radius: 10px;
   border-radius: 10px;
 
   width: 100%;
-  height: 80px;
+  height: 60px;
   min-width: 0px;
   min-height: 0px;
-  padding: 30px;
+  padding: 15px;
   margin-bottom: 20px;
 
 
-  font-size: 30px;
+  font-size: 1.2rem;
 
   &:focus {
     outline: none;
@@ -47,10 +42,10 @@ $border-radius: 10px;
   justify-content: center;
   align-items: center;
   min-height: 90vh;
-  padding: 20px 50px 0px 50px;
+  padding: 20px 50px;
 
   .create-edit-form {
-    width: 1200px;
+    width: 800px;
     padding: 18px 20px;
 
     display: flex;
@@ -75,17 +70,20 @@ $border-radius: 10px;
 
     .context {
       @include inputStyle();
-      height: 400px;
+      height: 300px;
     }
 
     .color-buttons {
       background: linear-gradient(rgba(70, 70, 70, 0.6), rgba(77, 77, 77, 0.6));
       color: #fff;
+
       display: flex;
       align-items: center;
       justify-content: space-evenly;
+      align-self: flex-start;
+
       font-weight: bold;
-      padding: 5px 0px;
+      padding: 5px;
       margin-bottom: 20px;
       border-radius: $border-radius;
 
@@ -111,11 +109,7 @@ $border-radius: 10px;
 
     .create-edit-button {
       @include button;
-      padding: 10px 20px;
-
-      &:hover {
-        @include button-hover;
-      }
+      align-self: flex-end;
 
       &:disabled {
         background: linear-gradient(

@@ -13,7 +13,7 @@ import { Droppable } from "../Droppable/Droppable";
 import Note from "../Note/Note";
 import "./style.scss";
 
-const Board = ({ notes, setSingleNote }) => {
+const Board = ({ notes, setSingleNote, loading }) => {
   const [notesLocal, setNotesLocal] = useContext(NotesLocalContext);
   const [noteSize, setNoteSize] = useState({ width: "271px", height: "287px" });
   const [draggedNoteId, setDraggedNoteId] = useState(null);
@@ -43,14 +43,15 @@ const Board = ({ notes, setSingleNote }) => {
     setNotesLocal(notes);
   }, [notes, setNotesLocal]);
 
+  //Change note size depending on windows width
   const windowSize = useWindowSize();
   useEffect(() => {
     if (windowSize.width < 375) {
       setNoteSize({ width: "216px", height: "230px" });
-    } else if (windowSize.width > 1440) {
-      setNoteSize({ width: "432px", height: "460px" });
-    } else {
+    } else if (windowSize.width < 1920) {
       setNoteSize({ width: "271px", height: "287px" });
+    } else if (windowSize.width < 2560) {
+      setNoteSize({ width: "352px", height: "369px" });
     }
   }, [windowSize]);
 
@@ -90,6 +91,14 @@ const Board = ({ notes, setSingleNote }) => {
     setDraggedNoteId(event.active.id);
     setIsModified(true);
   };
+
+  if (loading) {
+    return (
+      <div className='board'>
+        <div className='loader' />
+      </div>
+    );
+  }
 
   return (
     <DndContext

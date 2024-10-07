@@ -30,51 +30,54 @@ const Note = ({
 
   const windowSize = useWindowSize();
 
+  // Clamp note position to window size on window resize
   useEffect(() => {
+    function clampNoteToBoundary() {
+      // NOTE: borderOffset value must match with border size of Board component
+      let borderOffset = 80;
 
-    let borderOffset = 100;
+      switch (true) {
+        case windowSize.width < 375:
+          borderOffset = 30;
+          break;
+        case windowSize.width < 1440:
+          borderOffset = 40;
+          break;
+        case windowSize.width < 1920:
+          borderOffset = 40;
+          break;
+        case windowSize.width < 2560:
+          borderOffset = 60;
+          break;
+        default:
+          borderOffset = 80;
+      }
 
-    switch(true){
-      case windowSize.width < 375:
-        borderOffset = 30;
-        break;
-      case windowSize.width < 1440:
-        borderOffset = 40;
-        break;
-      case windowSize.width < 1920:
-        borderOffset = 60;
-        break;
-      case windowSize.width < 2560:
-        borderOffset = 80;
-        break;
+      const topBorder = 0;
+      const bottomBorder =
+        windowSize.height - borderOffset * 2 - windowSize.height * 0.1;
+      const leftBorder = 0;
+      const rightBorder = windowSize.width - borderOffset * 2;
+      const x = note.position.x;
+      const y = note.position.y;
+      const noteWidth = Number(noteSize.width.slice(0, -2));
+      const noteHeight = Number(noteSize.height.slice(0, -2));
+
+      if (x + noteWidth >= rightBorder) {
+        note.position.x = rightBorder - noteWidth;
+      } else if (x <= leftBorder) {
+        note.position.x = leftBorder;
+      }
+
+      if (y + noteHeight >= bottomBorder) {
+        note.position.y = bottomBorder - noteHeight;
+      } else if (y <= topBorder) {
+        note.position.y = topBorder;
+      }
     }
 
-    const topBorder = 0;
-    const bottomBorder = windowSize.height - borderOffset*2 - windowSize.height*0.10;
-    const leftBorder = 0;
-    const rightBorder = windowSize.width - borderOffset*2;
-    const x = note.position.x;
-    const y = note.position.y;
-    const noteWidth = Number(noteSize.width.slice(0, -2));
-    const noteHeight = Number(noteSize.height.slice(0, -2));
-
-
-    console.log(`Bottom Border ${bottomBorder}`);
-    console.log(`PositionY:  ${y}`)
-
-
-    if (x + noteWidth >= rightBorder) {
-      note.position.x = rightBorder - noteWidth;
-    } else if (x <= leftBorder) {
-      note.position.x = leftBorder;
-    }
-
-    if (y + noteHeight >= bottomBorder) {
-      note.position.y = bottomBorder - noteHeight;
-    } else if (y <= topBorder) {
-      note.position.y = topBorder;
-    }
-  }, [windowSize]);
+    clampNoteToBoundary();
+  }, [windowSize, note.position, noteSize.height, noteSize.width]);
 
   return (
     <Draggable

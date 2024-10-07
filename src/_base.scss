@@ -15,7 +15,7 @@
   font-size: 1rem;
 
   @include desktopL() {
-    padding: 15px 45px;
+    padding: 10px 30px;
   }
 
   @include laptop() {
@@ -39,9 +39,6 @@
   }
 }
 
-@mixin button-hover {
-}
-
 @mixin button-disabled {
   cursor: not-allowed;
   opacity: 0.6;
@@ -55,6 +52,8 @@
   }
 }
 
+
+// MEDIA QUERIES
 @mixin desktopL {
   @media only screen and (max-width: 2560px) {
     @content;
@@ -97,6 +96,7 @@
   }
 }
 
+// WEBSITE COLORS
 $break-small: 680px;
 $break-large: 970px;
 

@@ -10,7 +10,7 @@
 import useWindowSize from "./Hooks/useWindowSize";
 
 export function restrictToBoundingRect(transform, rect, boundingRect) {
-  let borderOffet = 80;
+  let borderOffet = 40;
 
   const value = {
     ...transform,

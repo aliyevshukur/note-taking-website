@@ -148,7 +148,11 @@ export default function App() {
               exact
               path={"/"}
               render={() => (
-                <Home notes={renderedNotes} setSingleNote={setSingleNote} />
+                <Home
+                  notes={renderedNotes}
+                  setSingleNote={setSingleNote}
+                  loading={loading}
+                />
               )}
             />
             <Route

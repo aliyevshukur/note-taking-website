@@ -66,14 +66,14 @@
     @include tablet {
       display: none;
       position: absolute;
-      top: 64px;
+      top: 10vh;
       left: 0;
       right: 0;
       justify-content: space-between;
       align-items: center;
       background-color: $peach;
       padding: 20px;
-      z-index: 2;
+      z-index: 99;
     }
 
     @include mobileL {

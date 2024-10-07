@@ -4,11 +4,11 @@ html {
   font-size: 180%;
 
   @include desktopL {
-    font-size: 150%;
+    font-size: 130%;
   }
 
   @include desktopM {
-    font-size: 140%;
+    font-size: 100%;
   }
 
   @include laptopL {
