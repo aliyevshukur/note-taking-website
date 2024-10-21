@@ -1,4 +1,4 @@
 import { createContext } from "react";
 
-export const NotesLocalContext = createContext();
+export const NotesContext = createContext();
 export const IsModifiedContext = createContext();

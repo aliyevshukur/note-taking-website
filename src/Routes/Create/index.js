@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
   aqua,
@@ -8,10 +8,12 @@ import {
   yellow,
   yellowLight,
 } from "../../utils/colors";
+import { NotesContext } from "../../utils/Contexts";
 import "./style.scss";
 
 const CreateEdit = (props) => {
   const history = useHistory();
+  const [notes, setNotes] = useContext(NotesContext);
   let defaultNote;
 
   if (props.action === "edit") {
@@ -23,7 +25,7 @@ const CreateEdit = (props) => {
       status: false,
       color: "",
       position: { x: 0, y: 0 },
-      zIndex: "1",
+      zIndex: `${notes.length}`,
     };
   }
 

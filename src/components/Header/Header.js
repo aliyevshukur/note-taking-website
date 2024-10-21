@@ -5,7 +5,7 @@ import noteImage from "../../img/SiteLogo.png";
 import { IsModifiedContext } from "../../utils/Contexts";
 import "./Header.scss";
 
-const Header = (props) => {
+const Header = ({ setFilter, saveLayout, createHandler }) => {
   const history = useHistory();
   const [isModified] = useContext(IsModifiedContext);
   const [isButtonsVisible, setIsButtonsVisible] = useState(true);
@@ -34,7 +34,7 @@ const Header = (props) => {
   return (
     <header className={"header"}>
       <Link to={"/"} className='note-logo'>
-        <img src={noteImage} alt='logo' className="note-logo-img"/>
+        <img src={noteImage} alt='logo' className='note-logo-img' />
         <h1 className={"header-title"}>
           Noted!<span className={"header-title-part"}>App</span>
         </h1>
@@ -49,25 +49,24 @@ const Header = (props) => {
       <div className='header-buttons' ref={buttonsRef}>
         <button
           className='button'
-          onClick={props.saveLayout}
-          disabled={!isModified}
+          onClick={saveLayout}
+          // disabled={!isModified}
         >
           Save
         </button>
-        <button className='button' onClick={props.filterActual}>
+        <button className='button' onClick={() => setFilter("actual")}>
           Actual
         </button>
-        <button className='button' onClick={props.filterArchive}>
+        <button className='button' onClick={() => setFilter("archived")}>
           Archive
         </button>
 
         <button
-
           className='button'
           onClick={() => {
-            history.push("/create-edit")
+            history.push("/create-edit");
             setIsButtonsVisible(false);
-            props.createHandler();
+            createHandler();
           }}
         >
           Create

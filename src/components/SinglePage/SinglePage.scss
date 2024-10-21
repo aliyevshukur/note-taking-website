@@ -7,12 +7,15 @@
   height: 90vh;
   padding: 30px 100px;
 
+  @include tablet {
+    padding: 30px 20px;
+  }
+
   .back-button {
     @include button;
     align-self: flex-start;
     margin-bottom: 20px;
   }
-
 }
 
 .notes {

@@ -10,11 +10,11 @@ const Note = ({
   setSingleNote,
   draggedNoteId,
   style,
-  translate,
   noteSize,
+  index,
 }) => {
   const history = useHistory();
-  const { zIndex = "0" } = note;
+  const { zIndex = index } = note;
 
   const noteStyle = {
     backgroundColor: `${note.color}`,
@@ -30,7 +30,7 @@ const Note = ({
     setSingleNote(note);
     history.push(`/notes/${note._id}`);
   };
-
+  // console.log(`Note ${JSON.stringify(note)}`);
   const windowSize = useWindowSize();
 
   // Clamp note position to window size on window resize
@@ -81,6 +81,13 @@ const Note = ({
 
     clampNoteToBoundary();
   }, [windowSize, note.position, noteSize.height, noteSize.width]);
+
+  if (note._id === draggedNoteId) {
+    // console.log("zIndex: ", zIndex);
+    noteStyle.boxShadow = "12px 12px 0px 0 rgba(51, 50, 46, 0.9)";
+    noteStyle.cursor = "grab";
+    noteStyle.transform = "scale(1.04)";
+  }
 
   return (
     <Draggable

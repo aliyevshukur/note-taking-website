@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { toast } from "react-toastify";
+import { shiftZIndex } from "../../utils/shiftZIndex";
 import Modal from "../Modal/Modal";
 import "./SinglePage.scss";
 
@@ -18,6 +20,10 @@ const SinglePage = (props) => {
   };
   //request server for update status of note
   const archiveButtonHandler = () => {
+    const notes = shiftZIndex(props.note._id, props.notes);
+    props.setNotesLoca(notes);
+    localStorage.setItem("notes", JSON.stringify(notes));
+
     fetch(
       `https://note-taking-website-server.vercel.app/notes/${props.note._id}`,
       {
@@ -45,19 +51,21 @@ const SinglePage = (props) => {
 
   // Modal window Yes Handler
   const deleteSingleNote = () => {
-    console.log(`ID: ${props.note._id}`);
     fetch(
       `https://note-taking-website-server.vercel.app/notes/${props.note._id}`,
       {
         method: "DELETE",
       },
     )
-      .then((res) => res.text()) // or res.json()
-      .then(() => {
+      .then((res) => res.json())
+      .then((result) => {
         props.addCurrentNote();
+        toast.success("Note deleted");
         history.goBack();
       })
-      .catch((err) => {});
+      .catch((err) => {
+        toast.error("Error deleting note");
+      });
     setModalActive(false);
   };
 
@@ -68,8 +76,10 @@ const SinglePage = (props) => {
 
   return (
     <div className='notesContainer'>
-
-    <button onClick={() => history.goBack()} className="back-button"> &lt; Back</button>
+      <button onClick={() => history.goBack()} className='back-button'>
+        {" "}
+        &lt; Back
+      </button>
 
       <div className='notes' style={noteStyle}>
         <div>

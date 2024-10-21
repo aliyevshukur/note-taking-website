@@ -1,13 +1,18 @@
-export function updateNotes(notes) {
+export async function updateNotes(notes) {
   console.log(JSON.stringify(notes));
-  fetch("https://note-taking-website-server.vercel.app/notes", {
-    method: "PUT",
-    body: JSON.stringify(notes),
-    headers: {
-      Accept: "application/json",
-      "Content-type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((result) => {});
+  try {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/notes`, {
+      method: "PUT",
+      body: JSON.stringify(notes),
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+    });
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
 }

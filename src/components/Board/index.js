@@ -6,16 +6,18 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import React, { useContext, useEffect, useState } from "react";
-import { IsModifiedContext, NotesLocalContext } from "../../utils/Contexts";
+import GrabSound from "../../assets/grab.MP3";
+import PutSound from "../../assets/put.MP3";
+import { IsModifiedContext, NotesContext } from "../../utils/Contexts";
 import { customModifier } from "../../utils/customModifier";
 import useWindowSize from "../../utils/Hooks/useWindowSize";
-import { findBiggestzIndex } from "../../utils/methods";
+import { shiftZIndex } from "../../utils/shiftZIndex";
 import { Droppable } from "../Droppable/Droppable";
 import Note from "../Note/Note";
 import "./style.scss";
 
-const Board = ({ notes, setSingleNote, loading }) => {
-  const [notesLocal, setNotesLocal] = useContext(NotesLocalContext);
+const Board = ({ setSingleNote, loading, filter }) => {
+  const [notes, setNotes] = useContext(NotesContext);
   const [noteSize, setNoteSize] = useState({ width: "271px", height: "287px" });
   const [draggedNoteId, setDraggedNoteId] = useState(null);
   const [isModified, setIsModified] = useContext(IsModifiedContext);
@@ -38,11 +40,6 @@ const Board = ({ notes, setSingleNote, loading }) => {
     },
   });
   const sensors = useSensors(pointerSensor, touchSensor);
-
-  // Copy notes to Local storage to modify them before updating to server
-  useEffect(() => {
-    setNotesLocal(notes);
-  }, [notes, setNotesLocal]);
 
   //Change note size depending on windows width
   const windowSize = useWindowSize();
@@ -69,9 +66,9 @@ const Board = ({ notes, setSingleNote, loading }) => {
     });
   };
   const onDragEnd = (event) => {
-    const draggingNote = notesLocal.find(
-      (note) => note._id === event.active.id,
-    );
+    playPutSound();
+    setDraggedNoteId(null);
+    const draggingNote = notes.find((note) => note._id === event.active.id);
     draggingNote.position.x += event.delta.x;
     draggingNote.position.y += event.delta.y;
 
@@ -89,13 +86,23 @@ const Board = ({ notes, setSingleNote, loading }) => {
     }));
   };
   const onDragStart = (event) => {
+    playGrabSound();
     setDraggedNoteId(event.active.id);
     setIsModified(true);
 
-    const draggingNote = notesLocal.find(
-      (note) => note._id === event.active.id,
-    );
-    draggingNote.zIndex = findBiggestzIndex(notesLocal) + 1;
+    const shiftedNotes = shiftZIndex(event.active.id, notes, filter);
+    localStorage.setItem("notes", JSON.stringify(shiftedNotes));
+    setNotes(shiftedNotes);
+  };
+
+  const playGrabSound = () => {
+    const grabSound = new Audio(GrabSound);
+    grabSound.play();
+  };
+
+  const playPutSound = () => {
+    const putSound = new Audio(PutSound);
+    putSound.play();
   };
 
   if (loading) {
@@ -116,21 +123,27 @@ const Board = ({ notes, setSingleNote, loading }) => {
       onDragCancel={onDragCancel}
     >
       <Droppable className={"board"}>
-        {notesLocal?.length === 0 ? (
+        {notes?.length === 0 ? (
           <p className='no-notes'>No notes found</p>
         ) : (
-          notesLocal?.map((note) => (
-            <Note
-              key={note._id}
-              note={note}
-              setSingleNote={setSingleNote}
-              positionLocal={translate}
-              draggedNoteId={draggedNoteId}
-              style={{ height: noteSize.height, width: noteSize.width }}
-              translate={translate}
-              noteSize={noteSize}
-            />
-          ))
+          notes?.map((note, index) => {
+            if (filter === "actual") if (note.isArchived) return null;
+            if (filter === "archived") if (!note.isArchived) return null;
+
+            return (
+              <Note
+                key={note._id}
+                note={note}
+                setSingleNote={setSingleNote}
+                positionLocal={translate}
+                draggedNoteId={draggedNoteId}
+                style={{ height: noteSize.height, width: noteSize.width }}
+                translate={translate}
+                noteSize={noteSize}
+                index={index}
+              />
+            );
+          })
         )}
       </Droppable>
     </DndContext>

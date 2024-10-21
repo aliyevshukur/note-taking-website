@@ -1,7 +1,7 @@
 @mixin button {
   background: $aqua;
   color: #fff;
-  padding:20px 60px;
+  padding: 20px 60px;
 
   text-decoration: none;
   font-size: rem;
@@ -52,7 +52,6 @@
   }
 }
 
-
 // MEDIA QUERIES
 @mixin desktopL {
   @media only screen and (max-width: 2560px) {
@@ -80,6 +79,12 @@
 
 @mixin tablet {
   @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tabletS {
+  @media only screen and (max-width: 550px) {
     @content;
   }
 }
