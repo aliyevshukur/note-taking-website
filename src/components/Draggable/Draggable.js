@@ -1,6 +1,6 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useWindowSize from "../../utils/Hooks/useWindowSize";
 import "./style.scss";
 
