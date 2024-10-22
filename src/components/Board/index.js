@@ -90,7 +90,7 @@ const Board = ({ setSingleNote, loading, filter }) => {
     setDraggedNoteId(event.active.id);
     setIsModified(true);
 
-    const shiftedNotes = shiftZIndex(event.active.id, notes, filter);
+    const shiftedNotes = shiftZIndex(event.active.id, notes);
     localStorage.setItem("notes", JSON.stringify(shiftedNotes));
     setNotes(shiftedNotes);
   };

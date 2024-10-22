@@ -24,11 +24,11 @@ export default function App() {
   const [filter, setFilter] = useState("actual");
 
   useEffect(() => {
-    getNotes();
-  }, []);
-  const getNotes = async () => {
+    getNotes(filter);
+  }, [filter]);
+  const getNotes = async (filter) => {
     setLoading(true);
-    const result = await fetchNotes();
+    const result = await fetchNotes(filter);
     if (result.ok) {
       setNotes(result.notes);
     }
@@ -53,7 +53,7 @@ export default function App() {
         })
           .then((response) => response.json())
           .then((result) => {
-            getNotes();
+            getNotes(filter);
             localStorage.setItem("notes", JSON.stringify(result.notes));
             toast.success("Note created");
           })

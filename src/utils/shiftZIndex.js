@@ -1,23 +1,14 @@
-export const shiftZIndex = (id, notes, filter) => {
-  let draggedZIndex = null;
+export const shiftZIndex = (id, notes) => {
+  const note = notes.find((note) => note._id === id);
+  const newIndex = notes.length - 1;
+  const currentIndex = notes.findIndex((note) => note._id === id);
 
-  const notesToShift = notes.map((note) => {
-    if (note._id === id) {
-      draggedZIndex = note.zIndex;
-    }
+  notes.splice(currentIndex, 1); // Remove the dragged note from the array
+  notes.splice(newIndex, 0, note); // Insert the dragged note at the end of the array
 
-    return note;
+  notes.forEach((note, index) => {
+    note.zIndex = index;
   });
 
-  const notesTemp = notesToShift.map((note) => {
-    if (filter === "actual") if (note.isArchived) return note;
-    if (filter === "archived") if (!note.isArchived) return note;
-
-    if (note._id === id) note.zIndex = notes.length - 1;
-    else if (note.zIndex > draggedZIndex) note.zIndex -= 1;
-
-    return note;
-  });
-
-  return notesTemp;
+  return notes;
 };

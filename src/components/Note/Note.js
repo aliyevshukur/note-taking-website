@@ -22,10 +22,7 @@ const Note = ({
     zIndex: zIndex,
     ...style,
   };
-  /**
-   * Handles note click event.
-   * Sets selected note to context and redirects to single note page.
-   */
+
   const handleOnClick = () => {
     setSingleNote(note);
     history.push(`/notes/${note._id}`);

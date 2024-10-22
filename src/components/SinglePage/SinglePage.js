@@ -20,26 +20,23 @@ const SinglePage = (props) => {
   };
   //request server for update status of note
   const archiveButtonHandler = () => {
-    const notes = shiftZIndex(props.note._id, props.notes);
-    props.setNotesLoca(notes);
-    localStorage.setItem("notes", JSON.stringify(notes));
-
-    fetch(
-      `https://note-taking-website-server.vercel.app/notes/${props.note._id}`,
-      {
-        method: "PUT",
-        body: JSON.stringify({
-          ...props.note,
-          isArchived: true,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
+    fetch(`${process.env.REACT_APP_API_URL}/notes/${props.note._id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        ...props.note,
+        isArchived: true,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
       },
-    )
+    })
       .then((response) => response.json())
       .then((result) => {
         props.addCurrentNote();
+        console.log(`resutl ${JSON.stringify(result.notes)}`);
+        const notes = shiftZIndex(props.note._id, result.notes, "actual");
+        props.setNotes(notes);
+        localStorage.setItem("notes", JSON.stringify(notes));
         history.goBack();
       });
   };
@@ -51,12 +48,9 @@ const SinglePage = (props) => {
 
   // Modal window Yes Handler
   const deleteSingleNote = () => {
-    fetch(
-      `https://note-taking-website-server.vercel.app/notes/${props.note._id}`,
-      {
-        method: "DELETE",
-      },
-    )
+    fetch(`${process.env.REACT_APP_API_URL}/notes/${props.note._id}`, {
+      method: "DELETE",
+    })
       .then((res) => res.json())
       .then((result) => {
         props.addCurrentNote();

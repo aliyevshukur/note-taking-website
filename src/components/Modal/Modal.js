@@ -8,11 +8,11 @@ const Modal = (props) => {
         <span className='ModalTitleStyle'>Delete this note?</span>
       </div>
       <div className='ModalButtons'>
+        <button onClick={props.yesHandler} className='ModalYesButton'>
+          Delete
+        </button>
         <button onClick={props.cancelHandler} className='ModalCancelButton'>
           Cancel
-        </button>
-        <button onClick={props.yesHandler} className='ModalYesButton'>
-          Yes
         </button>
       </div>
     </div>
