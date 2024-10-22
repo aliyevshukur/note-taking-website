@@ -47,11 +47,7 @@ const Header = ({ setFilter, saveLayout, createHandler }) => {
       </div>
 
       <div className='header-buttons' ref={buttonsRef}>
-        <button
-          className='button'
-          onClick={saveLayout}
-          // disabled={!isModified}
-        >
+        <button className='button' onClick={saveLayout} disabled={!isModified}>
           Save
         </button>
         <button className='button' onClick={() => setFilter("actual")}>
