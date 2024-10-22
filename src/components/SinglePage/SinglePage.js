@@ -33,7 +33,6 @@ const SinglePage = (props) => {
       .then((response) => response.json())
       .then((result) => {
         props.addCurrentNote();
-        console.log(`resutl ${JSON.stringify(result.notes)}`);
         const notes = shiftZIndex(props.note._id, result.notes, "actual");
         props.setNotes(notes);
         localStorage.setItem("notes", JSON.stringify(notes));
@@ -53,6 +52,7 @@ const SinglePage = (props) => {
     })
       .then((res) => res.json())
       .then((result) => {
+        props.setFilter();
         props.addCurrentNote();
         toast.success("Note deleted");
         history.goBack();

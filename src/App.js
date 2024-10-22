@@ -156,6 +156,7 @@ export default function App() {
                   note={selectedNote}
                   notes={notes}
                   setNotes={setNotes}
+                  setFilter={setFilter}
                   addCurrentNote={getNotes}
                   editHandler={editHandler}
                 />

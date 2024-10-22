@@ -1,5 +1,5 @@
 export async function updateNotes(notes) {
-  console.log(JSON.stringify(notes));
+  // console.log(JSON.stringify(notes));
   try {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/notes`, {
       method: "PUT",
